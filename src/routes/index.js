@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('view_home', {layout: 'app' });
+const productosController = require('../controllers/productosController');
+
+router.get('/', async(req, res) => {
+    const productos = await productosController.listAll();
+    res.render('view_home', {layout: 'app', productos });
 })
 
 router.get('/', (req, res) => {

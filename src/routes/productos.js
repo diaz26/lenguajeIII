@@ -36,8 +36,9 @@ router.get('/nuevo', (req, res) => {
     res.render('view_product_new', {layout: 'product' });
 })
 
-router.get('/:another', (req, res) => {
-    res.render('view_categorias', {layout: 'categorias' });
+router.get('/:another', async(req, res) => {
+    const productos = await productosController.listAll();
+    res.render('products/view_products', {layout: 'categorias', productos });
 })
 
 module.exports = router;

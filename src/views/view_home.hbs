@@ -128,119 +128,33 @@
                 <div class="col">
                     <div class="products_container grid">
                         
-                        <!-- Product -->
-                        <div class="product grid-item hot">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_1.jpg" alt="">
-                                    <div class="product_tag" style="width: auto;">Tendencia</div>
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">Pantalón largo JEAN</a></div>
-                                    <div class="product_price">$39.90</div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item">
-                            <div class="product_inner">
-                                <div class="product_image"><img src="images/product_2.jpg" alt=""></div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">hype grey shirt</a></div>
-                                    <div class="product_price">$19.50</div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item sale">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_3.jpg" alt="">
-                                    <div class="product_tag" style="width: auto;">Descuento</div>
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">long sleeve jacket</a></div>
-                                    <div class="product_price">$32.20<span>antes 64.40</span></div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_4.jpg" alt="">
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">denim men shirt</a></div>
-                                    <div class="product_price">$59.90</div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_5.jpg" alt="">
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">long red shirt</a></div>
-                                    <div class="product_price">$79.90</div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item new">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_6.jpg" alt="">
-                                    <div class="product_tag">Nuevo</div>
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">hype grey shirt</a></div>
-                                    <div class="product_price">$59.90</div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_7.jpg" alt="">
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">long sleeve jacket</a></div>
-                                    <div class="product_price">$15.90</div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product grid-item sale">
-                            <div class="product_inner">
-                                <div class="product_image">
-                                    <img src="images/product_8.jpg" alt="">
-                                    <div class="product_tag" style="width: auto;">Descuento</div>
-                                </div>
-                                <div class="product_content text-center">
-                                    <div class="product_title"><a href="product.html">denim men shirt</a></div>
-                                    <div class="product_price">$43.99<span>antes 64.40</span></div>
-                                    <div class="product_button ml-auto mr-auto trans_200"><a href="/carrito">Agregar</a></div>
-                                </div>
-                            </div>	
-                        </div>
+                        {{#each productos }}
+						<div class="product grid-item hot">
+							<div class="product_inner">
+								<div class="product_image" style="height: 300px; width: 250px;" align="center" >
+									<img src="/images/{{ imagen }}" alt="">
+									<!--div class="product_tag" style="width: auto;">Tendencia</div-->
+								</div>
+								<div class="product_content text-center" style="padding-top: 10px; padding-bottom: 10px;">
+									<div class="row">
+										<div class="col">
+											<div class="product_title" style="margin-top: 7px;"><a href="/productos">{{ nombre }}</a></div>
+										</div>
+										<div class="col">
+											<div class="product_price" style="margin-top: 0px;">$ {{ costo }}</div>
+										</div>
+									</div>
+									<form action="/carrito" method="POST">
+										<input type="hidden" value="{{ id }}" name="id">
+										<input type="submit" class="product_button ml-auto mr-auto trans_200" style="
+										font-size: 14px;
+    									font-weight: 700;
+                                        color: #212529;" value="AGREGAR">
+									</form>
+								</div>
+							</div>	
+						</div>
+						{{/each }}
 
                     </div>
                 </div>

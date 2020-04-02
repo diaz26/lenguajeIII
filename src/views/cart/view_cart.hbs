@@ -35,14 +35,14 @@
 							</tr> 
 						</thead>
 						<tbody>
-            				{{#each Productos }}
+            				{{#each productos }}
 							<tr> 
 								<td style="width: auto;"> <center> <img src="images/{{ imagen }}" width="50" height="50"> </center> </td> 
 								<td> {{ codigo }} </td> 
 								<td> {{ nombre }} </td> 
 								<td style="text-align: end;"> $ {{ costo }} </td> 
-								<td style="text-align: end;"> 2 </td> 
-								<td style="text-align: end;"> $ 100.00 </td> 
+								<td style="text-align: end;"> {{ cantidad }} </td> 
+								<td style="text-align: end;"> $ {{ total }} </td> 
 								<td></td> 
 							</tr> 
             				{{/each }}

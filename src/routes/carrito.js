@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const productos = require('../controllers/productosController');
+
+const carrito = require('../controllers/carritoController');
 
 router.get('/', async(req, res) => {
-    const allProductos = await productos.listAll();
-    res.render('cart/view_cart', {layout: 'carrito', Productos: allProductos });
+    const productos = await carrito.getOrder();
+    res.render('cart/view_cart', {layout: 'carrito', productos });
+})
+
+router.post('/', async(req, res) => {
+    const productos = await carrito.addDetail(req.body);
+    res.render('cart/view_cart', {layout: 'carrito', productos });
 })
 
 router.get('/agregar', (req, res) => {

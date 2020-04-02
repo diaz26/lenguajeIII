@@ -7,7 +7,7 @@ module.exports = function () {
     async function listAll(req) {
         let query = "SELECT * FROM productos"
         
-        if (req.column !== undefined && req.column !== null) {
+        if (req !== null && req.column !== undefined && req.column !== null) {
             let term = (req.term !== undefined && req.term !== null) ? req.term : '';
             if (req.term2 !== undefined && req.term2 !== null) {
                 query += ' WHERE ' + req.column + " BETWEEN " + term + " AND " + term2;
