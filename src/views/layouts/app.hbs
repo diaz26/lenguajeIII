@@ -17,11 +17,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
     
-    <!--link rel="stylesheet" type="text/css" href="/css/cart.css">
-    <link rel="stylesheet" type="text/css" href="/css/cart_responsive.css">
-
-    <link rel="stylesheet" type="text/css" href="/css/product.css">
-    <link rel="stylesheet" type="text/css" href="/css/product_responsive.css"-->
 </head>
 <body>
 
@@ -44,12 +39,7 @@
                 <nav class="header_nav">
                     <ul class="d-flex flex-row align-items-center justify-content-start">
                         <li><a href="/">Inicio</a></li>
-                        <li><a href="/admin">Admin</a></li>
-                        <li><a href="/productos">Mis productos</a></li>
-                        <li><a href="/productos/damas">Damas</a></li>
-                        <li><a href="/productos/hombres">Hombres</a></li>
-                        <li><a href="/productos/tecnologia">Tecnología</a></li>
-                        <li><a href="/pedidos">Pedidos</a></li>
+                        <li><a href="/productos">Productos</a></li>
                         <li><a href="/contacto">Contacto</a></li>
                         <li><a href="/ingresar">Ingresa</a></li>
                         <li><a href="/registrar">Regístrate</a></li>
@@ -95,12 +85,7 @@
             <nav class="menu_nav">
                 <ul class="menu_mm">
                     <li class="menu_mm"><a href="/">Inicio</a></li>
-                    <li class="menu_mm"><a href="/admin">Admin</a></li>
-                    <li class="menu_mm"><a href="/productos">Mis productos</a></li>
-                    <li class="menu_mm"><a href="/productos/damas">Damas</a></li>
-                    <li class="menu_mm"><a href="/productos/hombres">Hombres</a></li>
-                    <li class="menu_mm"><a href="/productos/tecnologia">Tecnología</a></li>
-                    <li class="menu_mm"><a href="/pedidos">Pedidos</a></li>
+                    <li class="menu_mm"><a href="/productos">Productos</a></li>
                     <li class="menu_mm"><a href="/contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -128,12 +113,7 @@
             <nav class="sidebar_nav" style="margin-top: 50px;">
                 <ul>
                     <li><a href="/">Inicio<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/admin">Admin<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos">Mis productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos/damas">Damas<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos/hombres">Hombres<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos/tecnologia">Tecnología<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/pedidos">Pedidos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/productos">Productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                     <li><a href="/contacto">Contacto<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                 </ul>
             </nav>
@@ -150,10 +130,10 @@
             <div class="cart d-flex flex-row align-items-center justify-content-start" style="margin-top: 40px;">
                 <div class="cart_icon"><a href="/carrito">
                     <img src="/images/bag.png" alt="">
-                    <div class="cart_num">2</div>
+                    <div class="cart_num">{{ sesion.cantidad }}</div>
                 </a></div>
                 <div class="cart_text">Cartera</div>
-                <div class="cart_price">$39.99 (1)</div>
+                <div class="cart_price">{{ sesion.valor }}</div>
             </div>
         </div>
 

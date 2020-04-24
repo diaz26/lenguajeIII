@@ -32,9 +32,53 @@ module.exports = function () {
     }
   }
 
+  async function productosTop() {
+    const resp = await pool.query(`SELECT pr.*, SUM(cantidad) AS cantidad_venta FROM detalles_pedidos AS dp JOIN pedidos AS p ON p.id = dp.pedido_id JOIN productos AS pr ON pr.id = dp.producto_id WHERE p.estado_id = 5 GROUP BY pr.id ORDER BY cantidad_venta DESC`)
+    return resp
+  }
+  async function usuariosTop() {
+    const resp = await pool.query(`SELECT us.*, gen.nombre as genero, ro.nombre as rol FROM pedidos AS p
+
+    JOIN usuarios AS us ON us.id = p.usuario_id
+    JOIN listas_elementos AS gen ON gen.id = us.genero_id
+    JOIN listas_elementos AS ro ON ro.id = us.rol_id
+    WHERE p.estado_id = 5`)
+    return resp
+  }
+  async function usuariosSinCompras() {
+    const resp = await pool.query(`SELECT us.*, gen.nombre as genero, ro.nombre as rol FROM usuarios as us
+    JOIN listas_elementos AS gen ON gen.id = us.genero_id
+    JOIN listas_elementos AS ro ON ro.id = us.rol_id
+    WHERE us.id not in (SELECT us.id FROM pedidos AS p
+    JOIN usuarios AS us ON us.id = p.usuario_id
+    WHERE p.estado_id = 5)`)
+    return resp
+  }
+
+  async function listLogued(id) {
+    const resp = await pool.query(`SELECT p.referencia, le.nombre AS estado, CAST(p.fecha_pedido AS DATE), CAST(p.fecha_entrega AS DATE), prod.imagen, prod.nombre, dp.* FROM detalles_pedidos AS dp
+        JOIN pedidos AS p ON p.id = dp.pedido_id
+        JOIN productos AS prod ON prod.id = dp.producto_id
+        JOIN listas_elementos AS le ON le.id = p.estado_id
+        `)
+    return resp
+  }
+
+  async function ordersRealized(id) {
+    const resp = await pool.query(`SELECT pe.*, le.nombre AS estado FROM pedidos AS pe
+      JOIN listas_elementos AS le ON le.id = pe.estado_id
+      WHERE pe.usuario_id = ` + id)
+    return resp
+  }
+
   return {
     listAll,
     create,
-    destroy
+    destroy,
+    productosTop,
+    usuariosTop,
+    usuariosSinCompras,
+    listLogued,
+    ordersRealized
   }
 }

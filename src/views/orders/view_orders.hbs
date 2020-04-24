@@ -4,153 +4,69 @@
 	<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/fondo.jpg" data-speed="0.8"></div>
 	<div class="home_container">
 		<div class="home_content">
-			<div class="home_title" style="font-size: 30px;"><b>PAGO</b> </div>
+			<div class="home_title" style="font-size: 30px;"><b>PEDIDOS</b> </div>
 			<div class="breadcrumbs">
 				<ul class="d-flex flex-row align-items-center justify-content-start" >
-					<li><a style="color: black;" href="/">INICIO</a></li>
+					<li><a style="color: black;" href="/home">INICIO</a></li>
 					<li style="color: black;">PEDIDOS</li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+
 <!-- Checkout -->
-<div class="checkout" style="margin-top: 50px;">
-
-	<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-left: 20px; margin-right: 20px;">
-		<li class="nav-item">
-			<a class="nav-link active" id="realice-tab" data-toggle="tab" href="#realice" role="tab" aria-controls="realice" aria-selected="false" style="
-			font-family: 'Poppins', sans-serif;
-			text-transform: uppercase;
-			">Realicé</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" id="merealizaron-tab" data-toggle="tab" href="#merealizaron" role="tab" aria-controls="merealizaron" aria-selected="true" style="
-			font-family: 'Poppins', sans-serif;
-			text-transform: uppercase;
-			">Me pidieron</a>
-		</li>
-	</ul>
-	<div class="tab-content" id="myTabContent">
-		<div class="tab-pane fade show active" id="realice" role="tabpanel" aria-labelledby="realice-tab" style="margin-top: 20px;">
-			<div class="section_container">
+<div class="cart_section">
+	<div class="section_container">
+		<ul class="nav nav-tabs" id="myTab" role="tablist" style="">
+			<li class="nav-item">
+				<a class="nav-link active" id="realice-tab" data-toggle="tab" href="#realice" role="tab" aria-controls="realice" aria-selected="false" style="
+				font-family: 'Poppins', sans-serif;
+				text-transform: uppercase;
+				">Realicé</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="merealizaron-tab" data-toggle="tab" href="#merealizaron" role="tab" aria-controls="merealizaron" aria-selected="true" style="
+				font-family: 'Poppins', sans-serif;
+				text-transform: uppercase;
+				">Me realizaron</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="realice" role="tabpanel" aria-labelledby="realice-tab" style="margin-top: 20px;">
 				<div class="container">
 					<div class="row">
 						<div class="col">
-							<div class="checkout_container d-flex flex-xxl-row flex-column align-items-start justify-content-start">
-								
-								<!-- Billing -->
-								<div class="billing checkout_box">
-									<form action="">
-										<div class="row">
-											<div class="col-md-4">
-												<div class="checkout_title" style="padding-top: 17px; margin-top: 5px;">REFERENCIA:</div>
-											</div>
-											<div class="col-md-6">
-												<input type="text" class="checkout_input" required="required" style="
-												margin-top: 5px;
-												font-family: 'Poppins', sans-serif;
-												text-transform: uppercase;
-												" >
-											</div>
-											<div class="col-md-2">
-												<button type="submit" class="btn btn-sm btn-block" style="
-													border-color: #22C5FE; 
-													height: 52px;
-													text-align: center;
-													padding-left: 3px;
-													padding-right: 3px;
-													color: #22C5FE; 
-													margin-top: 5px;
-													background-color: #212529;
-													font-family: 'Poppins', sans-serif;
-													text-transform: uppercase;
-													font-size: 14px;
-													">BUSCAR</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="billing checkout_box">
-									<div class="row">
-										<div class="col-auto">
-											<div class="dropdown_text" style="color: #212529;">PEDIDO: 4RR3DFVD</div> <br>
-										</div>
-										<div class="col-auto">
-											<div class="dropdown_text" style="color: #212529;">FECHA PEDIDO: 12/02/2020</div> <br>
-											<div class="dropdown_text" style="color: #212529;">FECHA ESTIMADA ENTREGA: 28/02/2020</div> <br>
-											<div class="dropdown_text" style="color: #212529;">FECHA ENTREGA: 25/02/2020</div> <br>
-										</div>
-										<div class="col-auto">
-											<div class="dropdown_text" style="color: #212529;">ESTADO: ENTREGADO</div> <br>
-										</div>
-									</div>
-									<hr>
-									<div class="cart_container" >
-								
-									<!-- Cart Bar -->
-										<div class="cart_bar">
-											<ul class="cart_bar_list item_list d-flex flex-row align-items-center justify-content-start" >
-												<li>PRODUCTO</li>
-												<li>COLOR</li>
-												<li>TAMAÑO</li>
-												<li>PRECIO</li>
-												<li>CANTIDAD</li>
-												<li>TOTAL</li>
-											</ul>
-										</div>
-
-										<!-- Cart Items -->
-										<div class="cart_items">
-											<ul class="cart_items_list" >
-												<!-- Cart Item -->
-												<li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="padding-top: 0px; padding-bottom: 0px; height: 100px;">
-													<div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="height: 100px;">
-														<div><div class="product_image"><img height="100px" src="images/cart_1.jpg" alt=""></div></div>
-														<div class="product_name"><a href="/productos">BOLSO</a></div>
-													</div>
-													<div class="product_color text-lg-center product_text">CAFÉ</div>
-													<div class="product_size text-lg-center product_text">ÚNICO</div>
-													<div class="product_price text-lg-center product_text">$19.50</div>
-													<div class="product_quantity_container" style="text-align: right;">
-														<span class="product_text product_num">1</span>
-													</div>
-													<div class="product_total text-lg-center product_text"><span>Total: </span>$19.50</div>
-												</li>
-												<hr>
-												<li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="padding-top: 0px; padding-bottom: 0px; height: 100px;">
-													<div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="height: 100px;">
-														<div><div class="product_image"><img height="100px" src="images/cart_1.jpg" alt=""></div></div>
-														<div class="product_name"><a href="/productos">BOLSO</a></div>
-													</div>
-													<div class="product_color text-lg-center product_text">CAFÉ</div>
-													<div class="product_size text-lg-center product_text">ÚNICO</div>
-													<div class="product_price text-lg-center product_text">$19.50</div>
-													<div class="product_quantity_container" style="text-align: right;">
-														<span class="product_text product_num">1</span>
-													</div>
-													<div class="product_total text-lg-center product_text"><span>Total: </span>$19.50</div>
-												</li>
-												<hr>
-												<li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="padding-top: 0px; padding-bottom: 0px; height: 100px;">
-													<div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start" style="height: 100px;">
-														<div><div class="product_image"><img height="100px" src="images/cart_1.jpg" alt=""></div></div>
-														<div class="product_name"><a href="/productos">BOLSO</a></div>
-													</div>
-													<div class="product_color text-lg-center product_text">CAFÉ</div>
-													<div class="product_size text-lg-center product_text">ÚNICO</div>
-													<div class="product_price text-lg-center product_text">$19.50</div>
-													<div class="product_quantity_container" style="text-align: right;">
-														<span class="product_text product_num">1</span>
-													</div>
-													<div class="product_total text-lg-center product_text"><span>Total: </span>$19.50</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-							</div>
+							<table id="ordersRealized" class="display" style="width:100%"> 
+								<thead> 
+									<tr> 
+										<th>Referencia</th>
+										<th style="width: 80px; text-align: center;">Fecha pedido</th>
+										<th style="width: 80px; text-align: center;">Fecha entrega</th>
+										<th style="width: 80px; text-align: end;">Total</th>
+										<th style="width: 80px; text-align: center;">Estado</th>
+										<th style="width: 80px; text-align: center; ">Acciones</th>
+									</tr> 
+								</thead>
+								<tbody>
+									{{#each pedidosRealizados }}
+									<tr> 
+										<td> {{ referencia }} </td> 
+										<td style="text-align: center;"> {{ fecha_pedido }} </td> 
+										<td style="text-align: center;"> {{ fecha_entrega }} </td> 
+										<td style="text-align: end;"> $ {{ total }} </td> 
+										<td style="text-align: center;"> {{ estado }} </td> 
+										<td>
+											<select class="form-control-sm">
+												<option>Acciones</option>
+												<option>Editar</option>
+												<option>Eliminar</option>
+											</select>
+										</td> 
+									</tr> 
+									{{/each }}
+								</tbody>
+							</table>
 
 						</div>
 
@@ -158,120 +74,48 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="tab-pane fade" id="merealizaron" role="tabpanel" aria-labelledby="merealizaron-tab" style="margin-top: 20px;">
-			<div class="section_container">
+			<div class="tab-pane fade" id="merealizaron" role="tabpanel" aria-labelledby="merealizaron-tab" style="margin-top: 20px;">
 				<div class="container">
 					<div class="row">
-						<div class="col">
-							<div class="checkout_container d-flex flex-xxl-row flex-column align-items-start justify-content-start">
-								
-								<!-- Billing -->
-								<div class="billing checkout_box">
-									<form action="">
-										<div class="row">
-											<div class="col-md-4">
-												<div class="checkout_title" style="padding-top: 17px; margin-top: 5px;">REFERENCIA:</div>
-											</div>
-											<div class="col-md-6">
-												<input type="text" class="checkout_input" required="required" style="
-												margin-top: 5px;
-												font-family: 'Poppins', sans-serif;
-												text-transform: uppercase;
-												" >
-											</div>
-											<div class="col-md-2">
-												<button type="submit" class="btn btn-sm btn-block" style="
-													border-color: #22C5FE; 
-													height: 52px;
-													text-align: center;
-													padding-left: 3px;
-													padding-right: 3px;
-													color: #22C5FE; 
-													margin-top: 5px;
-													background-color: #212529;
-													font-family: 'Poppins', sans-serif;
-													text-transform: uppercase;
-													font-size: 14px;
-													">BUSCAR</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<div class="billing checkout_box" style="padding: 20px;">
-									<table class="table table-hover table-sm" >
-										<thead style="
-											color: #22C5FE; 
-											margin-top: 5px;
-											background-color: #212529;
-											font-family: 'Poppins', sans-serif;
-											text-transform: uppercase;
-										">
-											<tr>
-												<th>REFERENCIA</th>
-												<th style="text-align: center;">FECHA</th>
-												<th>ESTADO</th>
-												<th>PRODUCTO</th>
-												<th>COLOR</th>
-												<th>TAMAÑO</th>
-												<th style="text-align: end;">CANTIDAD</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>3424HJHJH</td>
-												<td style="text-align: center;">28/02/2020</td>
-												<td>
-													<select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required" style="
-													height: 25px;
-													padding-left: 0px;
-													">
-														<option>PENDIENTE</option>
-														<option>ENTREGADO</option>
-														<option>ANULADO</option>
-													</select>
-												</td>
-												<td>
-													<div class="row">
-														<div class="col-6">
-															<img height="80px" width="80px" src="images/cart_1.jpg" alt="">
-														</div>
-														<div class="col-6">
-															<p style="
-																font-size: 13px;
-																color: #212529;
-																font-family: 'Poppins', sans-serif;
-															">
-																BOLSO
-															</p>
-														</div>
-													</div>
-												</td>
-												<td>CAFÉ</td>
-												<td>UNICO</td>
-												<td style="text-align: end;">1</td>
-												<td>
-													<button type="submit" class="btn btn-sm btn-block" style="
-														border-color: #22C5FE; 
-														text-align: center;
-														padding-left: 3px;
-														padding-right: 3px;
-														color: #22C5FE; 
-														margin-top: 5px;
-														background-color: #212529;
-														font-family: 'Poppins', sans-serif;
-														text-transform: uppercase;
-														font-size: 14px;
-														">ACTULIZAR</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								
-								</div>
-
-							</div>
+						<div class="col-12">
+							<table id="datatable2" class="display" style="width:100%"> 
+								<thead> 
+									<tr> 
+										<th>Referencia</th>
+										<th>Fecha pedido</th>
+										<th></th>
+										<th>Producto</th>
+										<th style="width: 80px; text-align: end;">Costo</th>
+										<th style="width: 80px; text-align: end;">Cantidad</th>
+										<th style="width: 80px; text-align: end;">Total</th>
+										<th style="width: 80px; text-align: center;">Estado</th>
+										<th style="width: 80px; text-align: center;">Fecha entrega</th>
+										<th style="width: 80px; text-align: center; ">Acciones</th>
+									</tr> 
+								</thead>
+								<tbody>
+									{{#each misPedidos }}
+									<tr> 
+										<td> {{ referencia }} </td> 
+										<td> {{ fecha_pedido }} </td> 
+										<td style="width: auto;"> <center> <img src="/images/{{ imagen }}" width="50" height="50"> </center> </td> 
+										<td> {{ nombre }} </td>
+										<td style="text-align: end;"> $ {{ costo }} </td> 
+										<td style="text-align: end;"> {{ cantidad }} </td> 
+										<td style="text-align: end;"> $ {{ total }} </td> 
+										<td style="text-align: center;"> {{ estado }} </td> 
+										<td style="text-align: center;"> {{ fecha_entrega }} </td> 
+										<td>
+											<select class="form-control-sm">
+												<option value="0" disabled selected>Acciones</option>
+												<option>Editar</option>
+												<option>Eliminar</option>
+											</select>
+										</td> 
+									</tr> 
+									{{/each }}
+								</tbody>
+							</table>
 
 						</div>
 
@@ -279,7 +123,6 @@
 
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>

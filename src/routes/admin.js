@@ -12,6 +12,18 @@ router.get('/usuarios', async(req, res) => {
     const usuarios = await admin.listAllUsers();
     res.render('admin/view_all_users', {layout: 'admin', usuarios });
 })
+
+router.get('/reportes', async(req, res) => {
+    let report = await '0';
+    res.render('admin/view_reports', {layout: 'admin', report });
+})
+
+router.post('/reportes', async(req, res) => {
+    const data = await admin.listReport(req.body);
+    let report = req.body.value;
+    res.render('admin/view_reports', {layout: 'admin', report, data });
+})
+
 router.delete('/usuarios/delete/:id', async(req, res) => {
     const id = req.params.id;
     const response = await usuario.destroy(id);

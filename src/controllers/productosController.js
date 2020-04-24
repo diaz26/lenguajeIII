@@ -3,6 +3,9 @@
 const productos = require('../models/productos')
 
 async function listAll (req = null) {
+    if (req !== null && req.body !== undefined) {
+        req = req.body
+    }
     const listAll = await productos().listAll(req)
     return listAll
 }
@@ -22,11 +25,19 @@ async function update (id, req) {
     return res
 }
 
+async function listLogued(req) {
+    let id = (req.session.user == undefined) ? 0 : req.session.user.id; 
+    const res = await productos().listLogued(id)
+    return res
+
+}
+
 
 module.exports = {
     listAll,
     create,
     destroy,
-    update
+    update,
+    listLogued
 }
   

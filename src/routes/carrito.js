@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const carrito = require('../controllers/carritoController');
 
 router.get('/', async(req, res) => {
@@ -9,8 +8,10 @@ router.get('/', async(req, res) => {
 })
 
 router.post('/', async(req, res) => {
-    const productos = await carrito.addDetail(req.body);
-    res.render('cart/view_cart', {layout: 'carrito', productos });
+
+    await carrito.addDetail(req);
+
+    res.render('cart/view_cart', {layout: 'carrito' });
 })
 
 router.get('/agregar', (req, res) => {

@@ -8,8 +8,10 @@ router.get('/', async(req, res) => {
     res.render('view_home', {layout: 'app', productos });
 })
 
-router.get('/', (req, res) => {
-    res.render('view_home', {layout: 'app' });
+router.get('/home', async(req, res) => {
+    const productos = await productosController.listAll();
+    let sesion = req.session.carrito;
+    res.render('view_home', {layout: 'logued', productos, sesion });
 })
 
 router.post('/admin', (req, res) => {

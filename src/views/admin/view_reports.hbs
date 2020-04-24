@@ -1,0 +1,114 @@
+<!-- Home -->
+
+<div class="home">
+	<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="/images/fondo.jpg" data-speed="0.8"></div>
+	<div class="home_container">
+		<div class="home_content">
+			<div class="home_title" style="font-size: 30px;"><b>PEDIDOS</b> </div>
+			<div class="breadcrumbs">
+				<ul class="d-flex flex-row align-items-center justify-content-start" >
+					<li><a style="color: black;" href="/">INICIO</a></li>
+					<li><a style="color: black;" href="/admin">ADMIN</a></li>
+					<li style="color: black;">REPORTES</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="cart_section">
+	<div class="section_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<form class="form-inline" action="/admin/reportes" method="POST" >
+						<label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo de reporte</label>
+						<select class="custom-select my-1 mr-sm-2" name="value" id="inlineFormCustomSelectPref">
+							<option value="1">Productos más vendidos</option>
+							<option value="2">Usuarios más compradores</option>
+							<option value="3">Usuarios sin compras</option>
+						</select>
+
+						<button type="submit" class="btn btn-primary my-1">Buscar</button>
+						<a type="submit" class="btn btn-danger my-1" href="/admin/reportes">Limpiar</a>
+					</form>
+					{{#Condicion report '==' '1' }}
+					<table id="datatable" class="display" style="width:100%"> 
+						<thead> 
+							<tr> 
+								<th></th>
+								<th>Código</th> 
+								<th>Nombre</th> 
+								<th style="width: 80px; text-align: end;">Costo</th>
+								<th style="width: 80px; text-align: end; ">Cantidad ventas</th>
+							</tr> 
+						</thead>
+						<tbody>
+            				{{#each data }}
+							<tr> 
+								<td style="width: auto;"> <center> <img src="/images/{{ imagen }}" width="50" height="50"> </center> </td> 
+								<td> {{ codigo }} </td> 
+								<td> {{ nombre }} </td> 
+								<td style="text-align: end;"> $ {{ costo }} </td> 
+								<td style="text-align: end;"> {{ cantidad_venta }} </td> 
+							</tr> 
+            				{{/each }}
+						</tbody>
+					</table>
+					{{/Condicion  }}
+
+					{{#Condicion report '==' '2' }}
+					<table id="datatable" class="display" style="width:100%"> 
+						<thead> 
+							<tr> 
+								<th>Nombre</th> 
+								<th>Identificación</th> 
+								<th>Género</th> 
+								<th>Rol</th> 
+								<th>Email</th> 
+							</tr> 
+						</thead>
+						<tbody>
+            				{{#each data }}
+							<tr> 
+								<td> {{ nombres }} {{ apellidos }} </td> 
+								<td> {{ identificacion }} </td> 
+								<td> {{ genero }} </td> 
+								<td> {{ rol }} </td> 
+								<td> {{ email }} </td> 
+							</tr> 
+            				{{/each }}
+						</tbody>
+					</table>
+					{{/Condicion  }}
+
+					{{#Condicion report '==' '3' }}
+					<table id="datatable" class="display" style="width:100%"> 
+						<thead> 
+							<tr> 
+								<th>Nombre</th> 
+								<th>Identificación</th> 
+								<th>Género</th> 
+								<th>Rol</th> 
+								<th>Email</th> 
+							</tr> 
+						</thead>
+						<tbody>
+            				{{#each data }}
+							<tr> 
+								<td> {{ nombres }} {{ apellidos }} </td> 
+								<td> {{ identificacion }} </td> 
+								<td> {{ genero }} </td> 
+								<td> {{ rol }} </td> 
+								<td> {{ email }} </td> 
+							</tr> 
+            				{{/each }}
+						</tbody>
+					</table>
+					{{/Condicion  }}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

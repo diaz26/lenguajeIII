@@ -5,15 +5,10 @@ const pool = require('../database')
 module.exports = function () {
 
     async function listAll(req) {
-        let query = "SELECT * FROM productos"
-        
-        if (req !== null && req.column !== undefined && req.column !== null) {
-            let term = (req.term !== undefined && req.term !== null) ? req.term : '';
-            if (req.term2 !== undefined && req.term2 !== null) {
-                query += ' WHERE ' + req.column + " BETWEEN " + term + " AND " + term2;
-            } else {
-                query += ' WHERE ' + req.column + " like '%" + term + "%'";
-            }
+        let query = `SELECT p.*, (SELECT COUNT(*) FROM detalles_pedidos WHERE producto_id = p.id) AS ventas FROM productos AS p`;
+        if (req !== undefined && req !== null && req.term !== undefined) {
+            console.log('ENTRA')
+            query += ` WHERE nombre like '%${req.term}%'`
         }
         const data = await pool.query(query)
         return data
@@ -52,9 +47,21 @@ module.exports = function () {
         }
     }
 
+    async function listLogued(id) {
+        const data = await pool.query(`SELECT * FROM productos WHERE usuario_id = ` + 21)
+        return data
+    }
+
+    async function find(id) {
+        const data = await pool.query(`SELECT * FROM productos WHERE id = ` + id)
+        return data
+    }
+
     return {
       listAll,
       create,
-      destroy
+      destroy,
+      listLogued,
+      find
     }
 }

@@ -10,10 +10,14 @@
   "author": "Jeff Díaz C.C 1003810783",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-group-routes": "^1.1.0",
     "express-handlebars": "^3.1.0",
     "express-path": "^0.3.8",
     "express-session": "^1.17.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "mysql": "^2.18.1",
     "passport": "^0.4.1"

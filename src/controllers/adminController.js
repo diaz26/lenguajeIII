@@ -19,9 +19,29 @@ async function listAllUsers () {
     return listAll
 }
 
+async function listReport(req) {
+    let resp = null;
+    switch (req.value) {
+        case '1':
+            resp = await pedidos().productosTop();
+            break;
+        case '2':
+            resp = await pedidos().usuariosTop();
+            break;
+        case '3':
+            resp = await pedidos().usuariosSinCompras();
+            break;    
+        default:
+            break;
+    }
+    
+    return resp
+}
+
 module.exports = {
     listAllOrders,
     listAllProducts,
-    listAllUsers
+    listAllUsers,
+    listReport
 }
   

@@ -10,11 +10,9 @@ module.exports = function () {
     return data
   }
 
-  async function create() {
-    return {
-      status: 'success',
-      msg: 'Se ha registrado exitosamente!'
-    }
+  async function create(req) {
+    await pool.query("INSERT INTO usuarios SET ?", [req])
+    return true;
   }
 
   async function destroy(id) {
@@ -33,11 +31,21 @@ module.exports = function () {
     }
   }
 
+  async function findLog(req) {
+    const user = await pool.query(`SELECT * FROM usuarios WHERE email = '` + req.email + `' AND contrasena = '` + req.pass + `' LIMIT 1`)
+    return user
+  }
 
+  async function findEmail(req) {
+    const user = await pool.query(`SELECT * FROM usuarios WHERE email = '` + req.email + `'`)
+    return user
+  }
 
   return {
     listAll,
     create,
-    destroy
+    destroy,
+    findLog,
+    findEmail
   }
 }
