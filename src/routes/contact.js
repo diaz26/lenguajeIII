@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('view_payment', {layout: 'payment' });
+    let sesion = req.session.carrito;
+    res.render('contact/view_contact', {layout: 'carrito', sesion});
 })
 
 module.exports = router;

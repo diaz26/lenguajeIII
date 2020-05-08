@@ -13,8 +13,13 @@ router.get('/out', (req, res) => {
 })
 
 router.post('/', async(req, res) => {
-    await authController.auth(req)
-    res.redirect('/home')
+    const resp = await authController.auth(req)
+    if (resp.status == 'success') {
+        res.redirect('/home')
+    } else {
+        res.render('login/view_login', {error: resp.msg});
+    }
+
 })
 
 router.get('/recuperarconstrasena', (req, res) => {

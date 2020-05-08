@@ -14,126 +14,146 @@
     
     <link rel="stylesheet" type="text/css" href="/css/cart.css">
     <link rel="stylesheet" type="text/css" href="/css/cart_responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/personal.css">
+
     <!-- DATATABLE -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+    <style>
+    .image-upload > input
+    {
+        display: none;
+    }
 
+    .image-upload img
+    {
+        width: 80px;
+        cursor: pointer;
+    }
+    </style>
 </head>
 <body>
 
     <div class="super_container">
-
         <!-- Header -->
-
         <header class="header">
             <div class="header_content d-flex flex-row align-items-center justify-content-start">
-                
                 <!-- Hamburger -->
                 <div class="hamburger menu_mm"><i class="fa fa-bars menu_mm" aria-hidden="true"></i></div>
-
                 <!-- Logo -->
                 <div class="header_logo">
-                    <a href="/"><div>BAS<span>EO</span></div></a>
+                    <a href="/">
+                        <div>BAS<span>EO</span></div>
+                    </a>
                 </div>
-
                 <!-- Navigation -->
                 <nav class="header_nav">
                     <ul class="d-flex flex-row align-items-center justify-content-start">
                         <li><a href="/home">Inicio</a></li>
-                        <li><a href="/productos">Productos</a></li>
-                        <li><a href="/productos/my">Mis productos</a></li>
-                        <li><a href="/pedidos">Mis pedidos</a></li>
-                        <li><a href="/contacto">Contacto</a></li>
+                        <li><a href="/products">Productos</a></li>
+                        <li><a href="/orders">Pedidos</a></li>
+                        <li><a href="/profile">Perfil</a></li>
+                        <li><a href="/contact">Contacto</a></li>
                         <li><a href="/login/out">Salir</a></li>
                     </ul>
                 </nav>
-
+    
                 <!-- Header Extra -->
                 <div class="header_extra ml-auto d-flex flex-row align-items-center justify-content-start">
-                    
                     <!-- Cart -->
                     <div class="cart d-flex flex-row align-items-center justify-content-start">
-                        <div class="cart_icon"><a href="/carrito">
-                            <img src="/images/bag.png" alt="">
-                            <div class="cart_num">{{sesion.cantidad}}</div>
-                        </a></div>
+                        <div class="cart_icon"><a href="/cart">
+                                <img src="/images/bag.png" alt="">
+                                {{#Condicion sesion '!=' 'undefined' }}
+                                <div class="cart_num">{{sesion.cantidad}}</div>
+                                {{/Condicion }}
+                                {{#Condicion sesion '==' 'undefined' }}
+                                <div class="cart_num">0</div>
+                                {{/Condicion }}
+                            </a></div>
                     </div>
-
                 </div>
-
+    
             </div>
         </header>
-
+    
         <!-- Menu -->
-
+    
         <div class="menu d-flex flex-column align-items-start justify-content-start menu_mm trans_400">
-            <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-            <div class="row">
-                <div class="col-12 col-md-6 mx-auto">
-                    <a href="/login/out"><div class="dropdown_text">SALIR</div></a>
+            <div class="menu_close_container">
+                <div class="menu_close">
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
-            <div class="menu_search">
-                <form action="/productos/buscar" class="header_search_form menu_mm">
-                    <input type="search" class="search_input menu_mm" placeholder="Buscar" required="required">
-                    <button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-                        <i class="fa fa-search menu_mm" aria-hidden="true"></i>
-                    </button>
-                </form>
+            <div class="row">
+                <div class="col-12 col-md-6 mx-auto">
+                    <a href="/login/out">
+                        <div class="dropdown_text">SALIR</div>
+                    </a>
+                </div>
             </div>
             <nav class="menu_nav">
                 <ul class="menu_mm">
                     <li class="menu_mm"><a href="/home">Inicio</a></li>
-                    <li class="menu_mm"><a href="/productos">Productos</a></li>
-                    <li class="menu_mm"><a href="/productos/my">Mis productos</a></li>
-                    <li class="menu_mm"><a href="/pedidos">Mis pedidos</a></li>
-                    <li class="menu_mm"><a href="/contacto">Contacto</a></li>
+                    <li class="menu_mm"><a href="/products">Productos</a></li>
+                    <li class="menu_mm"><a href="/orders">Pedidos</a></li>
+                    <li class="menu_mm"><a href="/profile">Perfil</a></li>
+                    <li class="menu_mm"><a href="/contact">Contacto</a></li>
                 </ul>
             </nav>
         </div>
-        
+    
         <!-- Sidebar -->
-
+    
         <div class="sidebar">
-			<div class="info_content d-flex flex-row align-items-center justify-content-start">
+            <div class="info_content d-flex flex-row align-items-center justify-content-start">
                 <div class="row">
                     <div class="col-12 col-md-6 mx-auto">
-                        <a href="/login/out"><div class="dropdown_text">SALIR</div></a>
+                        <a href="/login/out">
+                            <div class="dropdown_text">SALIR</div>
+                        </a>
                     </div>
                 </div>
             </div>
             <!-- Logo -->
             <div class="sidebar_logo" style="margin-top: 50px;">
-                <a href="/"><div>BAS<span>EO</span></div></a>
+                <a href="/">
+                    <div>BAS<span>EO</span></div>
+                </a>
             </div>
-
+    
             <!-- Sidebar Navigation -->
             <nav class="sidebar_nav" style="margin-top: 50px;">
                 <ul>
                     <li><a href="/home">Inicio<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos">Productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos/my">Mis productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/pedidos">Mis pedidos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/contacto">Contacto<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/products">Productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/orders">Pedidos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/profile">Perfil<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/contact">Contacto<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                 </ul>
             </nav>
-
-            <!-- Search -->
-            <div class="search" style="margin-top: 30px;">
-                <form action="/productos/buscar" class="search_form" id="sidebar_search_form">
-                    <input type="text" class="search_input" placeholder="Buscar" required="required">
-                    <button class="search_button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-            </div>
-
+    
             <!-- Cart -->
             <div class="cart d-flex flex-row align-items-center justify-content-start" style="margin-top: 40px;">
-                <div class="cart_icon"><a href="/carrito">
-                    <img src="/images/bag.png" alt="">
-                    <div class="cart_num">{{sesion.cantidad}}</div>
-                </a></div>
-                <div class="cart_text">Cartera</div>
-                <div class="cart_price">{{ sesion.valor }}</div>
+    
+                <div class="cart_icon"><a href="/cart">
+                        <img src="/images/bag.png" alt="">
+                        {{#Condicion sesion '!=' 'undefined' }}
+                        <div class="cart_num">{{sesion.cantidad}}</div>
+                        {{/Condicion }}
+                        {{#Condicion sesion '==' 'undefined' }}
+                        <div class="cart_num">0</div>
+                        {{/Condicion }}
+    
+                    </a></div>
+    
+                {{#Condicion sesion '!=' 'undefined' }}
+                <div class="cart_price"> $ {{ sesion.valor }}</div>
+                {{/Condicion  }}
+                {{#Condicion sesion '==' 'undefined' }}
+                <div class="cart_price">$ 0</div>
+                {{/Condicion  }}
             </div>
         </div>
 
@@ -218,6 +238,10 @@
     <script src="/plugins/easing/easing.js"></script>
     <script src="/plugins/parallax-js-master/parallax.min.js"></script>
     <script src="/js/cart.js"></script>
+
+    <!-- fontawesome icons -->
+    <script src="https://kit.fontawesome.com/cf9f32bbb5.js" crossorigin="anonymous"></script>
+    
     <!-- DATATABLE -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -231,7 +255,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#carritoDatatable').DataTable( {
+            const params = {
+                responsive: true,
+                scrollX: true,
                 language: {
                     'search': 'Buscar',
                     'info': 'Mostrando del _START_ al _END_, de un total de _TOTAL_ entradas.',
@@ -239,17 +265,43 @@
                         'next': 'Siguiente',
                         'previous': 'Anterior',
                     },
+                    'infoEmpty': 'No se encuentra ningún registro.',
                     'lengthMenu': 'Mostrar _MENU_ registros por página.',
                     'zeroRecords': 'No se encontró ningún resultado.',
                     'emptyTable': 'No se encuentra ningún registro.',
                     'no_record_found': 'No se encuentra ningún registro.',
-                    'data_available': 'No hay datos disponibles en la tabla.'
+                    'data_available': 'No hay datos disponibles en la tabla.',
+                    'infoFiltered': '(Filtrado de un total de _MAX_ registros)',
+                    'loadingRecords': 'Cargando...'
                 },
                 dom: 'Bfrtip',
                 buttons: [
-                    'csv', 'excel', 'pdf'
-                ]
-            });
+                    {
+                        extend: 'csv',
+                        text: '<span style="color: rgb(107, 19, 88);"><i class="fa fa-file-text fa-2x"></i></span>',
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<span style="color: green;"><i class="fa fa-file-excel-o fa-2x"></i></span>',
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<span style="color: red ;"><i class="fa fa-file-pdf-o fa-2x"></i></span>',
+                    }
+                ],
+                initComplete: function () {
+                    var btns = $('.dt-button');
+                    btns.addClass('btn btn-sm');
+                    btns.removeClass('dt-button');
+
+                }
+            }
+            $('#carritoDatatable').DataTable( params );
+
+            $('#order').DataTable(params);
+            
+            $('#orderMy').DataTable( params );
+
         });
     </script>
 </body>

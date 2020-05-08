@@ -1,65 +1,98 @@
 'use strict'
 
-const carrito = require('../models/carrito')
 const productos = require('../models/productos')
+const listasElementos = require('../models/listasElementos')
 
 async function addDetail (req) {
 
-    let buscarProducto = await productos().find(req.body.id) 
+    const productFind = await productos().find(req.params.id) 
 
-    if (buscarProducto.length > 0) {
-        let productoNuevo = buscarProducto[0]
-        let registroProducto = {
-            id: productoNuevo.id,
-            nombre: productoNuevo.nombre,
-            codigo: productoNuevo.codigo,
-            imagen: productoNuevo.imagen,
-            costo: productoNuevo.costo,
-            cantidad: 1,
-            total: productoNuevo.costo
-        };
-        if (req.session.carrito !== undefined) {
-            let productoFind = req.session.carrito.productos.find(prod => prod.id == productoNuevo.id);
-            if (productoFind !== null) {
-                req.session.carrito.productos.forEach(data => {
-                    if (data.id == productoNuevo.id) {
-                        data.cantidad++
-                        data.total = data.cantidad * productoNuevo.costo
-                    }
-                });
-            } else {
-                console.log('no encuenta', registroProducto)
-                req.session.carrito.productos.push(registroProducto)
-            }
-            req.session.carrito.cantidad = req.session.carrito.productos.length
+    if (productFind.length > 0) {
+        let product = productFind[0]
+        let result = req.session.carrito.productos.find((prod) => prod.id == product.id)
+
+        if (result !== undefined && result !== null) {
+            await req.session.carrito.productos.forEach(dp => {
+                if (dp.id == product.id) {
+                    dp.cantidad++
+                    dp.valor = dp.costo * dp.cantidad
+                }
+            });
+
         } else {
-            req.session.carrito = {
-                productos: [],
-                cantidad: 1,
-                total: 0 
-            }
-            req.session.carrito.productos.push(registroProducto)
+            product.cantidad = 1
+            product.valor = product.costo
+            await req.session.carrito.productos.push(product)
         }
-        let total = 0
-        req.session.carrito.productos.forEach(carr => {
-            total += carr.total
-        })
-        req.session.carrito.total = total
-        console.log(req.session.carrito)
-        return req.session.carrito
+
+        await calcularTotal(req)
+
+        return {
+            status: 'success',
+            msg: 'Producto agregado al carrito!'
+        }
+
+    } else {
+        return {
+            status: 'error',
+            msg: 'Producto no encontrado!'
+        }
     }
-    return true
-    
 }
 
-async function getOrder () {
-    const res = await carrito().getOrder()
+async function removeDetail(req) {
+
+    const result = req.session.carrito.productos.find((prod) => prod.id == req.params.id)
+
+    if (result !== null && result.cantidad == 1) {
+        let newCart = [];
+        await req.session.carrito.productos.forEach(dp => {
+            if (dp.id != req.params.id) {
+                newCart.push(dp)
+            }
+        });
+
+        req.session.carrito.productos = await newCart
+
+    } else {
+        await req.session.carrito.productos.forEach(dp => {
+            if (dp.id == req.params.id) {
+                dp.cantidad--
+                dp.valor = dp.costo * dp.cantidad
+            }
+        });
+    }
+    await calcularTotal(req)
+
+    return {
+        status: 'success',
+        msg: 'Producto eliminado!'
+    }
+
+}
+
+async function calcularTotal(req) {
+    let total = 0
+    let cantidad = 0
+
+    await req.session.carrito.productos.forEach(prod => {
+        total += prod.valor
+        cantidad += prod.cantidad
+    })
+    req.session.carrito.valor = await total
+    req.session.carrito.cantidad = await cantidad
+}
+
+async function list() {
+    const res = {
+        metodosPagos: await listasElementos().listType(4)
+    } 
     return res
 }
 
-
 module.exports = {
     addDetail,
-    getOrder
+    removeDetail,
+    list,
 }
   

@@ -51,10 +51,56 @@ async function login(req) {
     return resp;
 }
 
+async function findLogued(req) {
+
+    let id = (req.session.user) ? req.session.user.id : null
+
+    const user = await usuarios().find(id);
+    if (user.length > 0 && user[0].id !== undefined) {
+        return user[0]
+    } else {
+        return {}
+    }
+}
+
+async function updateUser(req, id, data, actPass = false) {
+    
+    const user = await usuarios().find(id);
+
+    if (user.length == 0 && user[0].id == undefined) {
+        return {
+            status: 'error',
+            msg: 'Usuario no encontrado'
+        }
+    }
+
+    if (actPass) {
+        if (user[0].contrasena !== data.contrasena) {
+            return {
+                status: 'error',
+                msg: 'Contraseña actual incorrecta!'
+            }
+        }
+        data.contrasena = await data.contrasena_new
+    }
+
+    user = await usuarios().update(id, data);
+
+    req.session.user = await user[0]
+
+    return {
+        status: 'success',
+        msg: 'Usuario actualizado!',
+    }
+
+}
+
 module.exports = {
     listAll,
     create,
     destroy,
-    login
+    login,
+    findLogued,
+    updateUser
 }
   

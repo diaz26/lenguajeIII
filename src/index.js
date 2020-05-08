@@ -7,15 +7,18 @@ const flash = require('connect-flash');
 const helpers = require('./lib/helpers/helper')
 const cors = require('cors'); 
 const app = express();
+const fileUpload = require('express-fileupload')
 require('express-group-routes');
 const router = express.Router()
 
 /** MIDDLEWARE */
 app.use(express.json());
 app.use(morgan('dev'));
+
 /** CORS - PETICIONES*/
 app.use(express.urlencoded({extended:false}));
 app.use(cors());
+
 /** SESSION */
 app.use(session({
     resave: false,
@@ -26,9 +29,14 @@ app.use(session({
     }
 }));
 app.use(flash());
+
+/** PARA ARCHIVOS */
+app.use(fileUpload())
+
 /** CONFIGURACIÓN */
 app.set('port', process.env.PORT || 3000); /** PUERTO */
 app.set('views', path.join(__dirname, 'views')); /** ARCHIVO DE VISTAS */
+
 /** CONFIG HBS */
 app.engine('.hbs', hbs({
     defaultLayout: 'app',
@@ -37,6 +45,7 @@ app.engine('.hbs', hbs({
     extname: '.hbs',
     helpers: require('./lib/handlebars')
 }));
+
 /** VISTAS CON EXTENSION HBS */
 app.set('view engine', '.hbs');
 
@@ -50,25 +59,26 @@ app.use((req, res, next) => {
 /** CARPETA PUBLICA */
 app.use(express.static(path.join(__dirname, 'public')));
 
-/** RUTAS */
+/** DEFINIDAS CLASE - PROYECTO */
 app.use(require('./routes'));
 app.use('/login', require('./routes/login'));
-app.use('/registrar', require('./routes/register'));
-
-/** DEFINIDAS CLASE - PROYECTO */
-app.use('/ingresar', require('./routes/login'));
-app.use('/pedidos', require('./routes/pedidos'));
-app.use('/carrito', require('./routes/carrito'));
-app.use('/productos', require('./routes/productos'));
+app.use('/register', require('./routes/register'));
+app.use('/orders', require('./routes/orders'));
+app.use('/cart', require('./routes/cart'));
+app.use('/products', require('./routes/products'));
+app.use('/profile', require('./routes/profile'));
+app.use('/contact', require('./routes/contact'));
 app.use('/admin', require('./routes/admin'));
 
 /** API ROUTES */
 app.use('/api/register', require('./routes/api/register'));
 app.use('/api/auth', require('./routes/api/authentication'));
 app.use('/api/login', require('./routes/api/login'));
+app.use('/api/logout', require('./routes/api/login'));
 app.use('/api/productos', require('./routes/api/productos'));
+app.use('/api/orders', require('./routes/api/orders'));
 
 /** CORRIENDO EL SERVER */
 app.listen(app.get('port'), () => {
-    console.log(`Complied sucessfully in port ${app.get('port')}`);
+    console.log(`Compilando correctamente por el puerto ${app.get('port')}`);
 });

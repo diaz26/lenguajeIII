@@ -41,11 +41,24 @@ module.exports = function () {
     return user
   }
 
+  async function find(id) {
+    const user = await pool.query(`SELECT * FROM usuarios WHERE id = ${id}`)
+    return user
+  }
+
+  async function update(id, data) {
+    await pool.query(`UPDATE usuarios WHERE id = ${id} SET ?`, [data])
+    const user = await find(id)
+    return user
+  }
+
   return {
     listAll,
     create,
     destroy,
     findLog,
-    findEmail
+    findEmail,
+    find,
+    update
   }
 }

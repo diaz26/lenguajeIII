@@ -21,9 +21,7 @@
 <body>
 
     <div class="super_container">
-
         <!-- Header -->
-
         <header class="header">
             <div class="header_content d-flex flex-row align-items-center justify-content-start">
                 
@@ -34,31 +32,6 @@
                 <div class="header_logo">
                     <a href="/"><div>BAS<span>EO</span></div></a>
                 </div>
-
-                <!-- Navigation -->
-                <nav class="header_nav">
-                    <ul class="d-flex flex-row align-items-center justify-content-start">
-                        <li><a href="/">Inicio</a></li>
-                        <li><a href="/productos">Productos</a></li>
-                        <li><a href="/contacto">Contacto</a></li>
-                        <li><a href="/ingresar">Ingresa</a></li>
-                        <li><a href="/registrar">Regístrate</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Header Extra -->
-                <div class="header_extra ml-auto d-flex flex-row align-items-center justify-content-start">
-                    
-                    <!-- Cart -->
-                    <div class="cart d-flex flex-row align-items-center justify-content-start">
-                        <div class="cart_icon"><a href="/carrito">
-                            <img src="/images/bag.png" alt="">
-                            <div class="cart_num">2</div>
-                        </a></div>
-                    </div>
-
-                </div>
-
             </div>
         </header>
 
@@ -68,27 +41,12 @@
             <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <a href="/ingresar"><div class="dropdown_text">INGRESA</div></a>
+                    <a href="/login"><div class="dropdown_text">INGRESA</div></a>
                 </div>
                 <div class="col-12 col-md-6">
-                    <a href="/registrar"><div class="dropdown_text">REGÍSTRATE</div></a>
+                    <a href="/register"><div class="dropdown_text">REGÍSTRATE</div></a>
                 </div>
             </div>
-            <div class="menu_search">
-                <form action="/productos/buscar" class="header_search_form menu_mm">
-                    <input type="search" class="search_input menu_mm" placeholder="Buscar" required="required">
-                    <button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-                        <i class="fa fa-search menu_mm" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </div>
-            <nav class="menu_nav">
-                <ul class="menu_mm">
-                    <li class="menu_mm"><a href="/">Inicio</a></li>
-                    <li class="menu_mm"><a href="/productos">Productos</a></li>
-                    <li class="menu_mm"><a href="/contacto">Contacto</a></li>
-                </ul>
-            </nav>
         </div>
         
         <!-- Sidebar -->
@@ -97,43 +55,16 @@
 			<div class="info_content d-flex flex-row align-items-center justify-content-start">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <a href="/ingresar"><div class="dropdown_text">INGRESA</div></a>
+                        <a href="/login"><div class="dropdown_text">INGRESA</div></a>
                     </div>
                     <div class="col-12 col-md-6">
-                        <a href="/registrar"><div class="dropdown_text">REGÍSTRATE</div></a>
+                        <a href="/register"><div class="dropdown_text">REGÍSTRATE</div></a>
                     </div>
                 </div>
             </div>
             <!-- Logo -->
             <div class="sidebar_logo" style="margin-top: 50px;">
                 <a href="/"><div>BAS<span>EO</span></div></a>
-            </div>
-
-            <!-- Sidebar Navigation -->
-            <nav class="sidebar_nav" style="margin-top: 50px;">
-                <ul>
-                    <li><a href="/">Inicio<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/productos">Productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                    <li><a href="/contacto">Contacto<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                </ul>
-            </nav>
-
-            <!-- Search -->
-            <div class="search" style="margin-top: 30px;">
-                <form action="/productos/buscar" class="search_form" id="sidebar_search_form">
-                    <input type="text" class="search_input" placeholder="Buscar" required="required">
-                    <button class="search_button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-            </div>
-
-            <!-- Cart -->
-            <div class="cart d-flex flex-row align-items-center justify-content-start" style="margin-top: 40px;">
-                <div class="cart_icon"><a href="/carrito">
-                    <img src="/images/bag.png" alt="">
-                    <div class="cart_num">{{ sesion.cantidad }}</div>
-                </a></div>
-                <div class="cart_text">Cartera</div>
-                <div class="cart_price">{{ sesion.valor }}</div>
             </div>
         </div>
 

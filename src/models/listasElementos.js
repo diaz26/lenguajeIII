@@ -9,7 +9,14 @@ module.exports = function () {
     return elements
   }
 
+  async function listTypeLimit(type, limit) {
+    const elements = await pool.query(`SELECT * FROM listas_elementos WHERE tipo_lista_id = ? LIMIT ?`, [type, limit])
+    return elements
+
+  }
+
   return {
-    listType
+    listType,
+    listTypeLimit
   }
 }

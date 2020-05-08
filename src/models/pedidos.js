@@ -9,11 +9,9 @@ module.exports = function () {
     return data
   }
 
-  async function create(req) {
-    return {
-      status: 'success',
-      msg: 'Pedido realizado exitosamente!'
-    }
+  async function create(data) {
+    const pedido = await pool.query("INSERT INTO pedidos SET ?", [data])
+    return pedido.insertId
   }
 
   async function destroy(id) {

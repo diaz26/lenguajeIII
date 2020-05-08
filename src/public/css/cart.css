@@ -1253,6 +1253,16 @@ section
 	color: #414141;
 	text-transform: uppercase;
 }
+.button button {
+	display: block;
+	line-height: 47px;
+	padding-left: 47px;
+	padding-right: 47px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #414141;
+	text-transform: uppercase;
+}
 .button_continue
 {
 	background: #22C5FE;
@@ -1263,6 +1273,9 @@ section
 }
 .button_continue:hover a
 {
+	color: #22C5FE;
+}
+.button_continue:hover button {
 	color: #22C5FE;
 }
 .button_clear

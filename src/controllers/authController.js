@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken')
 const secret = require('../lib/secret')
 const authModel = require('../models/auth')
+const usuarios = require('../models/usuarios')
 
 async function auth(req) {
     if (req.body.email && req.body.pass) {
@@ -9,8 +10,13 @@ async function auth(req) {
         if (user) {
             req.session.user = user;
             await iniciarCarrito(req);
-            const token = jwt.sign({ id: user.id }, secret, { expiresIn: 216000 })
-            return { 'status': 'success', 'token' : token, 'user': user.id}
+            const token = await jwt.sign({ id: user.id }, secret, { expiresIn: 7200 })
+            return {
+                'status': 'success',
+                'access_token': token,
+                'expires_in': 7200,
+                'user': user
+            }
         } else {
             return { 'status': 'error', 'msg': 'Usuario y/o contraseña incorrecta' }
         }
@@ -38,13 +44,28 @@ async function verifyToken(req, res, next) {
 async function iniciarCarrito(req) {
     req.session.carrito = {
         productos: [],
-        cantidad: '0',
-        valor: '$ 0'
+        cantidad: 0,
+        valor: 0
     }
 }
 
+async function verifyUser(req, res, next) {
+    try {
+        const verify = await (req.session.user && req.session.user.id !== undefined)
+
+        if (verify) {
+            next()
+        } else {
+            res.redirect('/login')
+        }
+    } catch (error) {
+        res.redirect('/login')
+    }
+}
 
 module.exports = {
     auth,
-    verifyToken
+    verifyToken,
+    verifyUser,
+    iniciarCarrito
 }
