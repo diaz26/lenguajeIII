@@ -1,0 +1,90 @@
+<div class="home" style="background-color: #212529; height: 700px;">
+    <div class="home_slider_container">
+        <div class="row">
+            <div class="col-md-10 mx-auto pt-3 pt-md-5 mt-5">
+                <div class="row pb-2">
+                    <div class="col-3">
+                        <div class="button button_continue">
+                            <a href="/orders">
+                                <span><i class="fas fa-arrow-left"></i> Volver</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 dropdown_text">
+                        <p>PEDIDO</p>
+                        {{ order.referencia }}
+                    </div>
+                    <div class="col-4 dropdown_text">
+                        <p>FECHA</p>
+                         {{ order.fecha_pedido }}
+                    </div>
+                    <div class="col-3 dropdown_text">
+                        {{#EstadoPedido order.estado_id order.estado }} {{/EstadoPedido }}
+                    </div>
+                </div>
+                <hr style="border-color: white;">
+                <div class="row">
+                    <div class="col-4 dropdown_text">
+                        <p>FECHA ENTREGA</p>
+                        {{ order.fecha_entrega }}
+                    </div>
+                    <div class="col-4 dropdown_text">
+                        <p>DIRECCIÓN ENTREGA</p>
+                        {{ order.direccion_entrega }}
+                    </div>
+                </div>
+                <hr style="border-color: white;">
+                <div class="row">
+                    <div class="col-4 dropdown_text">
+                        <p>MÉTODO DE PAGO</p>
+                        {{ order.metodo_pago }}
+                    </div>
+                    <div class="col-4 dropdown_text">
+                        <p>CUENTA - EMAIL</p>
+                        {{ order.cuenta }}
+                    </div>
+                    <div class="col-3 dropdown_text">
+                        <p>TOTAL</p>
+                        $ {{ order.total }}
+                    </div>
+                </div>
+                <hr style="border-color: white;">
+                <div class="row">
+                    <div class="col-4 dropdown_text">
+                        <p>DETALLES</p>
+                    </div>
+                </div>
+                <table id="detallePedido" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><div class="dropdown_text">Código</div></th>
+                            <th><div class="dropdown_text">Nombre</div></th>
+                            <th><div class="dropdown_text">Categoría</div></th>
+                            <th style="text-align: end;"><div class="dropdown_text">Valor unitario</div></th>
+                            <th style="text-align: end;"><div class="dropdown_text">Cantidad</div></th>
+                            <th style="text-align: end;"><div class="dropdown_text">Total</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each detalles }}
+                        <tr>
+                            <td style="width: auto; background-color: #212529;">
+                                <center> <img src="/images/{{ imagen }}" width="50" height="50"> </center>
+                            </td>
+                            <td style="background-color: #212529 ;"> <div class="dropdown_text"> {{ codigo }}  </div></td>
+                            <td style="background-color: #212529 ;"> <div class="dropdown_text"> {{ nombre }}  </div></td>
+                            <td style="background-color: #212529 ;"> <div class="dropdown_text"> {{ categoria }}  </div></td>
+                            <td style=" background-color: #212529 ;text-align: end;"> <div class="dropdown_text"> $ {{ costo }}  </div></td>
+                            <td style=" background-color: #212529 ;text-align: end;"> <div class="dropdown_text"> {{ cantidad }}  </div></td>
+                            <td style=" background-color: #212529 ;text-align: end;"> <div class="dropdown_text"> $ {{ total }}  </div></td>
+                        </tr>
+                        {{/each }}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

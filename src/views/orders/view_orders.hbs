@@ -18,9 +18,9 @@
 <!-- Checkout -->
 <div class="cart_section">
 	<div class="section_container">
-		<ul class="nav nav-tabs" id="myTab" role="tablist" style="">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link active" id="realice-tab" data-toggle="tab" href="#realice" role="tab" aria-controls="realice" aria-selected="false" style="
+				<a class="nav-link active" id="realice-tab" data-toggle="tab" href="#realice" role="tab" aria-controls="realice" aria-selected="true" style="
 				font-family: 'Poppins', sans-serif;
 				text-transform: uppercase;
 				">Realicé</a>
@@ -40,12 +40,13 @@
 							<table id="order" class="display" style="width:100%"> 
 								<thead> 
 									<tr> 
-										<th>Referencia</th>
+										<th style="width: 60px; text-align: start;">Referencia</th>
 										<th style="width: 80px; text-align: center;">Fecha pedido</th>
 										<th style="width: 80px; text-align: center;">Fecha entrega</th>
+										<th style="width: 80px; text-align: start;">Dirección entrega</th>
 										<th style="width: 80px; text-align: end;">Total</th>
 										<th style="width: 80px; text-align: center;">Estado</th>
-										<th style="width: 80px; text-align: center; ">Acciones</th>
+										<th style="width: 60px; text-align: center;">Acciones</th>
 									</tr> 
 								</thead>
 								<tbody>
@@ -54,15 +55,27 @@
 										<td> {{ referencia }} </td> 
 										<td style="text-align: center;"> {{ fecha_pedido }} </td> 
 										<td style="text-align: center;"> {{ fecha_entrega }} </td> 
+										<td style="text-align: start;"> {{ direccion_entrega }} </td> 
 										<td style="text-align: end;"> $ {{ total }} </td> 
-										<td style="text-align: center;"> {{ estado }} </td> 
+										<td style="text-align: center;"> <center> {{#EstadoPedido estado_id estado }} {{/EstadoPedido }}</center> </td> 
 										<td>
-											<select class="form-control-sm">
-												<option>Acciones</option>
-												<option>Editar</option>
-												<option>Eliminar</option>
-											</select>
-										</td> 
+											<div class="dropdown d-flex flex-row-reverse">
+												<button class="btn dropdown-toggle button button_continue m-0" style="height: auto; border-radius: 0px; font-size:14px"
+													type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Acciones
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius: 0px; padding: 0px;">
+													<a class="dropdown-item ml-auto" style="font-size: 14px;" href="/orders/show/{{ id }}"> 
+														<span> <i class="fa fa-eye"></i> Ver </span>
+													</a>
+													{{#Condicion estado_id '==' '6'  }} 
+													<a class="dropdown-item ml-auto" style="font-size: 14px;" href="/orders/cancel/{{ id }}"> 
+														<span> <i class="fas fa-ban"></i> Anular </span>
+													</a>
+													{{/Condicion }}
+												</div>
+											</div>
+										</td>
 									</tr> 
 									{{/each }}
 								</tbody>
@@ -77,19 +90,18 @@
 			<div class="tab-pane fade" id="merealizaron" role="tabpanel" aria-labelledby="merealizaron-tab" style="margin-top: 20px;">
 				<div class="container">
 					<div class="row">
-						<div class="col-12">
+						<div class="col">
 							<table id="orderMy" class="display" style="width:100%"> 
 								<thead> 
 									<tr> 
-										<th>Referencia</th>
-										<th>Fecha pedido</th>
-										<th></th>
-										<th>Producto</th>
-										<th style="width: 80px; text-align: end;">Costo</th>
+										<th style="width: 60px; text-align: start;">Referencia</th>
+										<th style="width: 60px; text-align: center;">Fecha pedido</th>
+										<th style="width: 80px; text-align: start;">Código</th>
+										<th style="width: 80px; text-align: start;">Producto</th>
 										<th style="width: 80px; text-align: end;">Cantidad</th>
-										<th style="width: 80px; text-align: end;">Total</th>
-										<th style="width: 80px; text-align: center;">Estado</th>
-										<th style="width: 80px; text-align: center;">Fecha entrega</th>
+										<th style="width: 100px; text-align: end;">Total</th>
+										<th style="width: 100px; text-align: center;">Estado</th>
+										<th style="width: 100px; text-align: center;">Fecha entrega</th>
 										<th style="width: 80px; text-align: center; ">Acciones</th>
 									</tr> 
 								</thead>
@@ -98,19 +110,27 @@
 									<tr> 
 										<td> {{ referencia }} </td> 
 										<td> {{ fecha_pedido }} </td> 
-										<td style="width: auto;"> <center> <img src="/images/{{ imagen }}" width="50" height="50"> </center> </td> 
+										<td> {{ codigo }} </td>
 										<td> {{ nombre }} </td>
-										<td style="text-align: end;"> $ {{ costo }} </td> 
 										<td style="text-align: end;"> {{ cantidad }} </td> 
 										<td style="text-align: end;"> $ {{ total }} </td> 
-										<td style="text-align: center;"> {{ estado }} </td> 
+										<td style="text-align: center;"> <center> {{#EstadoPedido estado_id estado }} {{/EstadoPedido }}</center> </td> 
 										<td style="text-align: center;"> {{ fecha_entrega }} </td> 
 										<td>
-											<select class="form-control-sm">
-												<option value="0" disabled selected>Acciones</option>
-												<option>Editar</option>
-												<option>Eliminar</option>
-											</select>
+											<div class="dropdown d-flex flex-row-reverse">
+												<button class="btn dropdown-toggle button button_continue m-0"
+													style="height: auto; border-radius: 0px; font-size:14px" type="button" id="dropdownMenuButton"
+													data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Acciones
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius: 0px; padding: 0px;">
+													{{#Condicion estado_id '==' '6'  }}
+													<a class="dropdown-item ml-auto" style="font-size: 14px;" href="/orders/anul/{{ pedido_id }}">
+														<span> <i class="fas fa-ban"></i> Rechazar </span>
+													</a>
+													{{/Condicion }}
+												</div>
+											</div>
 										</td> 
 									</tr> 
 									{{/each }}

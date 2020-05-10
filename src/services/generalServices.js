@@ -3,7 +3,7 @@
 module.exports = function () {
 
     async function dateToString(date) {
-        dat = new Date(date)
+        let dat = new Date(date)
         let month = '' + (dat.getMonth() + 1),
             day = '' + dat.getDate(),
             year = dat.getFullYear();
@@ -17,7 +17,7 @@ module.exports = function () {
     }
 
     async function dateNow() {
-        dat = new Date()
+        let dat = new Date()
         return await dateToString(dat)
     }
     return {

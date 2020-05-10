@@ -63,9 +63,33 @@ async function verifyUser(req, res, next) {
     }
 }
 
+async function resetPass(req) {
+    const user = await usuarios().findEmail(req)
+
+    if (user.length > 0 ) {
+        if (req.pass !== req.pass2) {
+            return {
+                status: 'error',
+                msg: 'Las contraseñas no coinciden'
+            }
+        }
+        await usuarios().update(user[0].id, { contrasena: req.pass })
+        return {
+            status: 'success',
+            msg: 'Contraseña actualizada!'
+        }
+    } else {
+        return {
+            status: 'error',
+            msg: 'Email no registrado'
+        }
+    }
+}
+
 module.exports = {
     auth,
     verifyToken,
     verifyUser,
-    iniciarCarrito
+    iniciarCarrito,
+    resetPass
 }

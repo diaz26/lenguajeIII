@@ -35,12 +35,14 @@ async function store(req) {
     let pedido = {
         usuario_id: req.session.user.id,
         referencia: await code(),
-        fecha_pedido: generalServices().dateNow(),
+        fecha_pedido: await generalServices().dateNow(),
         estado_id: 6,
         total: req.session.carrito.valor,
+        direccion_entrega: req.body.direccion_entrega,
         metodo_pago_id: req.body.metodo_pago_id,
         cuenta: req.body.cuenta
     }
+    console.log(await generalServices().dateNow(), pedido)
 
     const pedido_id = await pedidos().create(pedido)
 
@@ -71,12 +73,47 @@ async function code() {
     return generate
 }
 
+async function anular(id, estado = 7) {
+    const pedido = await find(id)
+    if (pedido !== null) {
+        if (pedido.estado_id != 6 ) {
+            return {
+                status: 'error',
+                msg: 'El pedido se encuentra ' + pedido.estado
+            }
+        }
+        await pedidos().update(id, {estado_id: estado})
+        return {
+            status: 'success',
+            msg: 'Pedido anulado exitosamente!'
+        }
+    } else {
+        return {
+            status: 'error',
+            msg: 'Pedido no encontrado!'
+        }
+    }
+}
+
+async function find(id) {
+    const orderFind = await pedidos().find(id)
+    return orderFind[0] || null
+}
+
+async function details(id) {
+    return await detallesPedidos().findOrder(id)
+
+}
+
 module.exports = {
     listAll,
     create,
     destroy,
     listLogued,
     ordersRealized,
-    store
+    store,
+    anular,
+    find,
+    details
 }
   

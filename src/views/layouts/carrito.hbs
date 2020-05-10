@@ -255,25 +255,25 @@
 
     <script>
         $(document).ready(function() {
+            const lenguaje = {
+                'search': 'Buscar',
+                'info': 'Mostrando del _START_ al _END_, de un total de _TOTAL_ entradas.',
+                'paginate': {
+                    'next': 'Siguiente',
+                    'previous': 'Anterior',
+                },
+                'infoEmpty': 'No se encuentra ningún registro.',
+                'lengthMenu': 'Mostrar _MENU_ registros por página.',
+                'zeroRecords': 'No se encontró ningún resultado.',
+                'emptyTable': 'No se encuentra ningún registro.',
+                'no_record_found': 'No se encuentra ningún registro.',
+                'data_available': 'No hay datos disponibles en la tabla.',
+                'infoFiltered': '(Filtrado de un total de _MAX_ registros)',
+                'loadingRecords': 'Cargando...'
+            }
             const params = {
                 responsive: true,
-                scrollX: true,
-                language: {
-                    'search': 'Buscar',
-                    'info': 'Mostrando del _START_ al _END_, de un total de _TOTAL_ entradas.',
-                    'paginate': {
-                        'next': 'Siguiente',
-                        'previous': 'Anterior',
-                    },
-                    'infoEmpty': 'No se encuentra ningún registro.',
-                    'lengthMenu': 'Mostrar _MENU_ registros por página.',
-                    'zeroRecords': 'No se encontró ningún resultado.',
-                    'emptyTable': 'No se encuentra ningún registro.',
-                    'no_record_found': 'No se encuentra ningún registro.',
-                    'data_available': 'No hay datos disponibles en la tabla.',
-                    'infoFiltered': '(Filtrado de un total de _MAX_ registros)',
-                    'loadingRecords': 'Cargando...'
-                },
+                language: lenguaje,
                 dom: 'Bfrtip',
                 buttons: [
                     {
@@ -300,7 +300,18 @@
 
             $('#order').DataTable(params);
             
-            $('#orderMy').DataTable( params );
+            $('#orderMy').DataTable(params);
+
+            $('#detallePedido').DataTable({
+                responsive: true,
+                scrollX: true,
+                language: {
+                    ...lenguaje,
+                    'info': ''
+                },
+                bFilter:false,
+                bPaginate: false
+            });
 
         });
     </script>

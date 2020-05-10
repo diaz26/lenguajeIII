@@ -93,6 +93,15 @@
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div class="input-group">
+											<label for="" class="cart_extra_total_title col-6 pl-0">Dirección de entrega</label>
+											<div class="col-6 ml-auto pr-0">
+												<input type="text" class="form-control form-control-sm" style="background-color: transparent;" name="direccion_entrega"
+													required>
+											</div>
+										</div>
+									</li>
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="input-group">
 											<label for="" class="cart_extra_total_title col-6 pl-0">Método de pago</label>
 											<div class="col-6 ml-auto pr-0">
 												<select class="form-control form-control-sm" name="metodo_pago_id" style="color: black; background-color: transparent;" required>
@@ -112,6 +121,7 @@
 											</div>
 										</div>
 									</li>
+									
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div class="cart_extra_total_title">Total</div>
 										<div class="cart_extra_total_value ml-auto">$ {{ sesion.valor }}</div>

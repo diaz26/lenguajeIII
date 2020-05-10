@@ -5,7 +5,7 @@ const pool = require('../database')
 module.exports = function () {
 
   async function listAll() {
-    const data = await pool.query("SELECT pe.*,DATE_FORMAT(pe.fecha_pedido,'%d/%m/%y') AS fecha_pedido, DATE_FORMAT(pe.fecha_entrega,'%d/%m/%y') AS fecha_entrega, CONCAT(us.nombres,' ',us.apellidos) AS comprador, es.nombre AS estado FROM pedidos AS pe JOIN listas_elementos AS es ON es.id = pe.estado_id JOIN usuarios as us on us.id = pe.usuario_id")
+    const data = await pool.query("SELECT pe.*,DATE_FORMAT(pe.fecha_pedido,'%d/%m/%Y') AS fecha_pedido, DATE_FORMAT(pe.fecha_entrega,'%d/%m/%y') AS fecha_entrega, CONCAT(us.nombres,' ',us.apellidos) AS comprador, es.nombre AS estado FROM pedidos AS pe JOIN listas_elementos AS es ON es.id = pe.estado_id JOIN usuarios as us on us.id = pe.usuario_id")
     return data
   }
 
@@ -54,19 +54,35 @@ module.exports = function () {
   }
 
   async function listLogued(id) {
-    const resp = await pool.query(`SELECT p.referencia, le.nombre AS estado, CAST(p.fecha_pedido AS DATE), CAST(p.fecha_entrega AS DATE), prod.imagen, prod.nombre, dp.* FROM detalles_pedidos AS dp
+    const resp = await pool.query(`SELECT p.referencia, le.nombre AS estado, p.estado_id, DATE_FORMAT(p.fecha_pedido,'%d/%m/%Y') AS fecha_pedido, DATE_FORMAT(p.fecha_entrega,'%d/%m/%Y') AS fecha_entrega, prod.codigo, prod.nombre, dp.* FROM detalles_pedidos AS dp
         JOIN pedidos AS p ON p.id = dp.pedido_id
         JOIN productos AS prod ON prod.id = dp.producto_id
         JOIN listas_elementos AS le ON le.id = p.estado_id
-        `)
+        WHERE prod.usuario_id = ?
+        `, [id])
     return resp
   }
 
   async function ordersRealized(id) {
-    const resp = await pool.query(`SELECT pe.*, le.nombre AS estado FROM pedidos AS pe
+    const resp = await pool.query(`SELECT pe.*, DATE_FORMAT(pe.fecha_pedido,'%d/%m/%Y') AS fecha_pedido, le.nombre AS estado, mp.nombre AS metodo_pago FROM pedidos AS pe
       JOIN listas_elementos AS le ON le.id = pe.estado_id
-      WHERE pe.usuario_id = ` + id)
+      JOIN listas_elementos AS mp ON mp.id = pe.metodo_pago_id
+      WHERE pe.usuario_id = ?`,[id])
     return resp
+  }
+
+  async function find(id) {
+    const resp = await pool.query(`
+      SELECT pe.*, DATE_FORMAT(pe.fecha_pedido,'%d/%m/%Y') AS fecha_pedido, le.nombre AS estado, mp.nombre AS metodo_pago FROM pedidos AS pe
+      JOIN listas_elementos AS le ON le.id = pe.estado_id
+      JOIN listas_elementos AS mp ON mp.id = pe.metodo_pago_id
+      WHERE pe.id = ?`, [id])
+    return resp
+  }
+
+  async function update(id, data) {
+    await pool.query(`UPDATE pedidos SET ? WHERE id = ?`, [data, id])
+    return true
   }
 
   return {
@@ -77,6 +93,8 @@ module.exports = function () {
     usuariosTop,
     usuariosSinCompras,
     listLogued,
-    ordersRealized
+    ordersRealized,
+    find,
+    update
   }
 }

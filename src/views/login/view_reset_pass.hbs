@@ -1,59 +1,63 @@
 <div class="home">
-    <div class="home_slider_container" style="display: flex; align-items: center; justify-content: center;">
+    <div class="home_slider_container">
         <div class="background_image" style="background-image:url(../images/fondo.jpg)"></div>
-        <div class="card" style=" width: 600px; border-radius: 10px; background-color: #212529; border-color: #22C5FE; color: #fff;">
-            <form action="" method="post">
-                <div class="card-header" style="border-color: #22C5FE">
-                    <div class="dropdown_text">Recuperar contraseña</div>
-                </div>
-                <div class="card-body">
-                    <div class="input-group">
-                        <label class="col-form-label col-md-6" for="email"><div class="dropdown_text">Correo Electrónico</div></label>
-                        <div class="col-md-6 form-group">
-                            <input class="form-control form-control-sm" minlength="9" maxlength="50" style="border-color: #22C5FE;" placeholder="Correo electrónico" type="email" name="email" id="email">
+        <div class="row">
+            <div class="col-md-8 col-lg-6 mx-auto pt-3 pt-md-5 mt-5 pl-3 pr-3 pl-md-0 pr-md-0">
+                <div class="card" style="border-radius: 10px; background-color: #212529; border-color: #22C5FE; color: #fff;">
+                    <form action="/login/resetpass" method="post">
+                        <div class="card-header" style="border-color: #22C5FE">
+                            <div class="dropdown_text">Recuperar contraseña</div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <label class="col-form-label col-md-6" for="pass1"><div class="dropdown_text">Contraseña nueva</div></label>
-                        <div class="col-md-6 form-group">
-                            <input class="form-control form-control-sm" minlength="4" maxlength="20" style="border-color: #22C5FE;" placeholder="Contraseña nueva" type="password" name="pass" id="pass1">
-                        </div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <label class="col-form-label col-md-6" for="email"><div class="dropdown_text">Correo Electrónico</div></label>
+                                <div class="col-md-6 form-group">
+                                    <input class="form-control form-control-sm" minlength="1" maxlength="30" style="border-color: #22C5FE;" placeholder="Correo electrónico" type="text" name="email" id="email" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="col-form-label col-md-6" for="pass1"><div class="dropdown_text">Contraseña nueva</div></label>
+                                <div class="col-md-6 form-group">
+                                    <input class="form-control form-control-sm" minlength="4" maxlength="20" style="border-color: #22C5FE;" placeholder="Contraseña nueva" type="password" name="pass" id="pass1" required>
+                                </div>
 
-                    </div>
-                    <div class="input-group">
-                        <label class="col-form-label col-md-6" for="pass2"><div class="dropdown_text">Repite la Contraseña</div></label>
-                        <div class="col-md-6 form-group">
-                            <input class="form-control form-control-sm" minlength="4" maxlength="20" style="border-color: #22C5FE;" placeholder="Repite la Contraseña" type="password" name="pass" id="pass2">
+                            </div>
+                            <div class="input-group">
+                                <label class="col-form-label col-md-6" for="pass2"><div class="dropdown_text">Repite la Contraseña</div></label>
+                                <div class="col-md-6 form-group">
+                                    <input class="form-control form-control-sm" minlength="4" maxlength="20" style="border-color: #22C5FE;" placeholder="Repite la Contraseña" type="password" name="pass2" id="pass2" required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="card-footer" style="border-color: #22C5FE">
+                            <div class="input-group">
+                                <div class="col-md-6 form-group">
+                                    <a href="/login">
+                                        <button type="button" class="btn btn-sm btn-block" style="
+                                            border-color: #22C5FE; 
+                                            color: #22C5FE; 
+                                            background-color: #212529;
+                                            font-family: 'Poppins', sans-serif;
+                                            text-transform: uppercase;
+                                            font-size: 14px;
+                                            ">Regresar</button>
+                                    </a>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <button type="submit" class="btn btn-sm btn-block" style="
+                                        border-color: #22C5FE; 
+                                        color: #22C5FE; 
+                                        background-color: #212529;
+                                        font-family: 'Poppins', sans-serif;
+                                        text-transform: uppercase;
+                                        font-size: 14px;
+                                        ">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="card-footer" style="border-color: #22C5FE">
-                    <div class="input-group">
-                        <div class="col-md-6 form-group">
-                            <a href="/ingresar">
-                                <button type="button" class="btn btn-sm btn-block" style="
-                                    border-color: #22C5FE; 
-                                    color: #22C5FE; 
-                                    background-color: #212529;
-                                    font-family: 'Poppins', sans-serif;
-                                    text-transform: uppercase;
-                                    font-size: 14px;
-                                    ">Regresar</button>
-                            </a>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <button type="submit" class="btn btn-sm btn-block" style="
-                                border-color: #22C5FE; 
-                                color: #22C5FE; 
-                                background-color: #212529;
-                                font-family: 'Poppins', sans-serif;
-                                text-transform: uppercase;
-                                font-size: 14px;
-                                ">Enviar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
