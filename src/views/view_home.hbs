@@ -1,0 +1,75 @@
+<div class="boxes">
+    <div class="section_container">
+        <div class="container">
+            <div class="row">
+                <!-- Box -->
+                {{#each categorias  }}
+                <div class="col-lg-4 box_col">
+                    <div class="box">
+                        <div class="box_title trans_200"><a href="/products/category/{{id}}">{{ nombre }}</a></div>
+                    </div>
+                </div>
+                {{/each  }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Products -->
+
+<div class="products" style="margin-top: 20px;">
+    <div class="section_container" >
+        <div class="container">
+        <!-- Search -->
+            <div class="row mb-5">
+                <div class="col-md-5">
+                    <div class="search">
+                        <form action="/products/search" method="POST" class="search_form" id="sidebar_search_form">
+                            <input type="text" class="search_input" name="term" style="color: black;" placeholder="Buscar producto" maxlength="20" required="required">
+                            <button class="search_button"><i class="fa fa-search" style="color: black;" aria-hidden="falses"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {{#each productos }}
+                <div class="col-md-3 col-sm-6 pb-md-0 pb-2">
+                    <div class="card">
+                        <img class="card-img-top" src="/images/{{ imagen }}">
+                        <div class="card-body p-0 dropdown_text" style="color: black;">
+                            <div class="row pb-2">
+                                <div class="col-7 pl-4 ml-auto">
+                                    {{ nombre }}
+                                </div>
+                                <div class="col-4 pl-0">
+                                    $ {{ costo }}
+                                </div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-11 pl-4 ml-auto">
+                                    {{ categoria }}
+                                </div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-7 pl-4 ml-auto">
+                                    Ventas:
+                                </div>
+                                <div class="col-4 pl-0">
+                                    {{ ventas }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button button_continue">
+                            <center>
+                                <a href="/cart/add/{{id}}">
+                                    <span>Agregar <i class="fa fa-shopping-cart"></i></span>  
+                                </a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                {{/each }}
+            </div>
+        </div>
+    </div>
+</div>

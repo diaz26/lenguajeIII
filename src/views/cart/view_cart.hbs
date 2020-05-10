@@ -1,0 +1,146 @@
+<!-- Home -->
+
+<div class="home">
+	<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/fondo.jpg" data-speed="0.8"></div>
+	<div class="home_container">
+		<div class="home_content">
+			<div class="home_title" style="font-size: 30px;"><b>CARRITO</b> </div>
+			<div class="breadcrumbs">
+				<ul class="d-flex flex-row align-items-center justify-content-start" >
+					<li><a style="color: black;" href="/">INICIO</a></li>
+					<li style="color: black;">CARRITO</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Cart -->
+
+<div class="cart_section">
+	<div class="section_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<table id="carritoDatatable" class="display" style="width:100%"> 
+						<thead> 
+							<tr> 
+								<th></th>
+								<th>Código</th> 
+								<th>Nombre</th> 
+								<th>Categoría</th> 
+								<th style="text-align: end;">Valor unitario</th>
+								<th style="text-align: center;">Cantidad</th>
+								<th style="text-align: end;">Total</th>
+							</tr> 
+						</thead>
+						<tbody>
+            				{{#each sesion.productos }}
+							<tr> 
+								<td style="width: auto;"> <center> <img src="images/{{ imagen }}" width="50" height="50"> </center> </td> 
+								<td> {{ codigo }} </td> 
+								<td> {{ nombre }} </td> 
+								<td> {{ categoria }} </td> 
+								<td style="text-align: end;"> $ {{ costo }} </td> 
+								<td style="text-align: center;"> 
+									<span>
+									<a href="/cart/remove/{{id}}" class="btn btn-sm mb-2 dropdown_text" style="color: #22C5FE;">
+										<i class="fa fa-minus"></i>
+									</a>
+									{{ cantidad }} 
+									<a href="/cart/add/{{id}}" class="btn btn-sm mb-2 dropdown_text" style="color: #22C5FE;">
+										<i class="fa fa-plus"></i>
+									</a>
+									</span>
+								 </td> 
+								<td style="text-align: end;"> $ {{ valor }} </td> 
+							</tr> 
+            				{{/each }}
+						</tbody>
+					</table>
+					<div class="cart_container">
+						<!-- Cart Buttons -->
+						<div class="cart_buttons d-flex flex-row align-items-start justify-content-start">
+							<div class="cart_buttons_inner ml-auto d-flex flex-row align-items-start justify-content-start flex-wrap">
+								<div class="button button_continue"><a href="/">CONTINUAR COMPRANDO</a></div>
+								<div class="button button_clear"><a href="/cart/clean">LIMPIAR CARRITO</a></div>
+								<div class="button button_continue"><a href="#pago">PAGAR</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section_container cart_extra_container" id="pago" style="margin-top: 20px;">
+		<div class="container">
+			<div class="row">
+				<!-- Cart Total -->
+				<div class="col-xxl-6 mx-auto">
+					<div class="cart_extra cart_extra_2">
+						<form action="/orders" method="POST">
+							<div class="cart_extra_content cart_extra_total">
+								<div class="cart_extra_title">Pedido</div>
+								<ul class="cart_extra_total_list">
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="cart_extra_total_title">Subtotal</div>
+										<div class="cart_extra_total_value ml-auto">$ {{ sesion.valor }} </div>
+									</li>
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="cart_extra_total_title">Envío</div>
+										<div class="cart_extra_total_value ml-auto">Gratis!</div>
+									</li>
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="input-group">
+											<label for="" class="cart_extra_total_title col-6 pl-0">Dirección de entrega</label>
+											<div class="col-6 ml-auto pr-0">
+												<input type="text" class="form-control form-control-sm" style="background-color: transparent;" name="direccion_entrega"
+													required>
+											</div>
+										</div>
+									</li>
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="input-group">
+											<label for="" class="cart_extra_total_title col-6 pl-0">Método de pago</label>
+											<div class="col-6 ml-auto pr-0">
+												<select class="form-control form-control-sm" name="metodo_pago_id" style="color: black; background-color: transparent;" required>
+													<option value="" selected disabled>Seleccione...</option>
+													{{#each listas.metodosPagos }}
+														<option value="{{ id }}">{{ nombre }}</option>
+													{{/each }}
+												</select>
+											</div>
+										</div>
+									</li>
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="input-group">
+											<label for="" class="cart_extra_total_title col-6 pl-0">Cuenta o e-mail (Paypal)</label>
+											<div class="col-6 ml-auto pr-0">
+												<input type="text" class="form-control form-control-sm" style="background-color: transparent;" name="cuenta" required>
+											</div>
+										</div>
+									</li>
+									
+									<li class="d-flex flex-row align-items-center justify-content-start">
+										<div class="cart_extra_total_title">Total</div>
+										<div class="cart_extra_total_value ml-auto">$ {{ sesion.valor }}</div>
+									</li>
+								</ul>
+								<div class="d-flex justify-content-center pt-5">
+									<div class="button button_continue trans_200">
+										<span>
+											<button type="submit" style="background-color: transparent; border-width: 0px; padding-left: 30px; padding-right: 30;" {{#Condicion sesion.valor '==' '0'}}disabled{{/Condicion}}>
+											Realizar Pedido <i class="far fa-save"></i>
+											</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

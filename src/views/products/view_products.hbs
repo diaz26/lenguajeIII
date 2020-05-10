@@ -1,0 +1,86 @@
+<!-- Home -->
+
+<div class="home">
+	<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="/images/fondo.jpg" data-speed="0.8"></div>
+	<div class="home_container">
+		<div class="home_content">
+			<div class="home_title" style="font-size: 30px;"><b>COMPRAR</b> </div>
+			<div class="breadcrumbs">
+				<ul class="d-flex flex-row align-items-center justify-content-start" >
+					<li><a style="color: black;" href="/">INICIO</a></li>
+					<li style="color: black;">HOMBRES</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Products -->
+
+<div class="products">
+
+	<!-- Sorting & Filtering -->
+	<div class="products_bar">
+		<div class="section_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="products_bar_content d-flex flex-column flex-xxl-row align-items-start align-items-xxl-center justify-content-start">
+							
+							<div class="products_bar_side ml-xxl-auto d-flex flex-row align-items-center justify-content-start">
+								<div class="products_dropdown product_dropdown_sorting">
+									<div class="isotope_sorting_text"><span>Clasificación por defecto</span><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+									<ul>
+										<li class="item_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'>Defecto</li>
+										<li class="item_sorting_btn" data-isotope-option='{ "sortBy": "price" }'>Precio</li>
+										<li class="item_sorting_btn" data-isotope-option='{ "sortBy": "name" }'>Nombre</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="products_container grid">
+						
+						{{#each productos }}
+						<div class="product grid-item hot">
+							<div class="product_inner">
+								<div class="product_image" style="height: 300px; width: 250px;" align="center" >
+									<img src="/images/{{ imagen }}" alt="">
+									<!--div class="product_tag" style="width: auto;">Tendencia</div-->
+								</div>
+								<div class="product_content text-center" style="padding-top: 10px; padding-bottom: 10px;">
+									<div class="row">
+										<div class="col">
+											<div class="product_title" style="margin-top: 7px;"><a href="/productos">{{ nombre }}</a></div>
+										</div>
+										<div class="col">
+											<div class="product_price" style="margin-top: 0px;">$ {{ costo }}</div>
+										</div>
+									</div>
+									<form action="/carrito" method="POST">
+										<input type="hidden" value="{{ id }}" name="id">
+										<input type="submit" class="product_button ml-auto mr-auto trans_200" style="
+										font-size: 14px;
+    									font-weight: 700;
+										text-color: #6c757d
+										" value="AGREGAR">
+									</form>
+								</div>
+							</div>	
+						</div>
+						{{/each }}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BASEO</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="/css/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/personal.css">
+    <link rel="shortcut icon" href="/images/icon.png" >
+    <link rel="icon" href="/images/icon.png" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="super_container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                <!-- Hamburger -->
+                <div class="hamburger menu_mm"><i class="fa fa-bars menu_mm" aria-hidden="true"></i></div>
+                <!-- Logo -->
+                <div class="header_logo">
+                    <a href="/"><div>BAS<span>EO</span></div></a>
+                </div>
+                <!-- Navigation -->
+                <nav class="header_nav">
+                    <ul class="d-flex flex-row align-items-center justify-content-start">
+                        <li><a href="/home">Inicio</a></li>
+                        <li><a href="/products">Productos</a></li>
+                        <li><a href="/orders">Pedidos</a></li>
+                        <li><a href="/profile">Perfil</a></li>
+                        <li><a href="/contact">Contacto</a></li>
+                        <li><a href="/login/out">Salir</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Extra -->
+                <div class="header_extra ml-auto d-flex flex-row align-items-center justify-content-start">
+                    <!-- Cart -->
+                    <div class="cart d-flex flex-row align-items-center justify-content-start">
+                        <div class="cart_icon"><a href="/cart">
+                            <img src="/images/bag.png" alt="">
+                            <div class="cart_num">{{sesion.cantidad}}</div>
+                        </a></div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu d-flex flex-column align-items-start justify-content-start menu_mm trans_400">
+            <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+            <div class="row">
+                <div class="col-12 col-md-6 mx-auto">
+                    <a href="/login/out"><div class="dropdown_text">SALIR</div></a>
+                </div>
+            </div>
+            <nav class="menu_nav">
+                <ul class="menu_mm">
+                    <li class="menu_mm"><a href="/home">Inicio</a></li>
+                    <li class="menu_mm"><a href="/products">Productos</a></li>
+                    <li class="menu_mm"><a href="/orders">Pedidos</a></li>
+                    <li class="menu_mm"><a href="/profile">Perfil</a></li>
+                    <li class="menu_mm"><a href="/contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <!-- Sidebar -->
+
+        <div class="sidebar">
+			<div class="info_content d-flex flex-row align-items-center justify-content-start">
+                <div class="row">
+                    <div class="col-12 col-md-6 mx-auto">
+                        <a href="/login/out"><div class="dropdown_text">SALIR</div></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Logo -->
+            <div class="sidebar_logo" style="margin-top: 50px;">
+                <a href="/"><div>BAS<span>EO</span></div></a>
+            </div>
+
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar_nav" style="margin-top: 50px;">
+                <ul>
+                    <li><a href="/home">Inicio<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/products">Productos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/orders">Pedidos<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/profile">Perfil<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    <li><a href="/contact">Contacto<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                </ul>
+            </nav>
+            
+            <!-- Cart -->
+            <div class="cart d-flex flex-row align-items-center justify-content-start" style="margin-top: 40px;">
+            
+                <div class="cart_icon"><a href="/cart">
+                    <img src="/images/bag.png" alt="">
+                    {{#Condicion sesion '!=' 'undefined' }}
+                    <div class="cart_num">{{sesion.cantidad}}</div>
+                    {{/Condicion }}
+                    {{#Condicion sesion '==' 'undefined' }}
+                    <div class="cart_num">0</div>
+                    {{/Condicion }}
+
+                </a></div>
+
+                {{#Condicion sesion '!=' 'undefined' }}
+                <div class="cart_price"> $ {{ sesion.valor }}</div>
+                {{/Condicion  }}
+                {{#Condicion sesion '==' 'undefined' }}
+                <div class="cart_price">$ 0</div>
+                {{/Condicion  }}
+            </div>
+        </div>
+
+        <!-- body -->
+
+        {{{body}}}
+
+        <!-- Footer -->
+
+        <footer class="footer">
+            <div class="footer_content">
+                <div class="section_container">
+                    <div class="container">
+                        <div class="row">
+                            
+                            <!-- About -->
+                            <div class="col-xxl-3 col-md-6 footer_col">
+                                <div class="footer_about">
+                                    <!-- Logo -->
+                                    <div class="footer_logo">
+                                        <a><div>BAS<span>EO</span></div></a>
+                                    </div>
+                                    <div class="footer_about_text">
+                                        <p>Compra con la mayor seguridad en nuestras tiendas electrónicas BASEO con garantía del 100% de los productos.</p>
+                                    </div>
+                                    <div class="cards">
+                                        <ul class="d-flex flex-row align-items-center justify-content-start">
+                                            <li><a target="_blank" href="https://www.paypal.com/co/"><img src="/images/paypal.jpg" alt=""></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contact -->
+                            <div class="col-xxl-3 col-md-6 footer_col">
+                                <div class="footer_contact">
+                                    <div class="footer_title">CONTACTO</div>
+                                    <div class="footer_contact_list">
+                                        <ul>
+                                            <li class="d-flex flex-row align-items-start justify-content-start"><span>C.</span><div>BASEO Ecommerce</div></li>
+                                            <li class="d-flex flex-row align-items-start justify-content-start"><span>A.</span><div>Colombia, Huila</div></li>
+                                            <li class="d-flex flex-row align-items-start justify-content-start"><span>T.</span><div>+57 316 533 7090</div></li>
+                                            <li class="d-flex flex-row align-items-start justify-content-start"><span>E.</span><div>contacto@baseo.com</div></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credits -->
+            <div class="credits">
+                <div class="section_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="credits_content d-flex flex-row align-items-center justify-content-end">
+                                    <div class="credits_text">
+                                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/plugins/greensock/TweenMax.min.js"></script>
+    <script src="/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="/plugins/easing/easing.js"></script>
+    <script src="/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="/plugins/Isotope/fitcolumns.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script src="https://kit.fontawesome.com/cf9f32bbb5.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

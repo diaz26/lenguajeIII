@@ -1,0 +1,113 @@
+<!-- Home -->
+
+<div class="home">
+    <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="/images/fondo.jpg"
+        data-speed="0.8"></div>
+    <div class="home_container">
+        <div class="home_content">
+            <div class="home_title" style="font-size: 30px;"><b>NUEVO</b> </div>
+            <div class="breadcrumbs">
+                <ul class="d-flex flex-row align-items-center justify-content-start">
+                    <li><a style="color: black;" href="/">INICIO</a></li>
+                    <li><a style="color: black;" href="/products">PRODUCTOS</a></li>
+                    <li style="color: black;">NUEVO</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart -->
+
+<div class="cart_section">
+    <div class="section_container">
+        <div class="container">
+            <form action="/products/{{ product.id }}" method="post" enctype="multipart/form-data" >
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="input-group">
+                            <label class="col-form-label col-md-4" for="codigo">
+                                <div class="dropdown_text" style="color: black;">Código</div>
+                            </label>
+                            <div class="form-group col-md-8">
+                                <input class="form-control form-control-sm" minlength="2" maxlength="45" required value="{{ product.codigo }}"
+                                    style="border-color: #22C5FE; color: #212529;" placeholder="Código" type="text" name="codigo" id="codigo" >
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="col-form-label col-md-4" for="nombre">
+                                <div class="dropdown_text" style="color: black;">Nombre</div>
+                            </label>
+                            <div class="form-group col-md-8">
+                                <input class="form-control form-control-sm" minlength="2" maxlength="45" required value="{{ product.nombre }}"
+                                    style="border-color: #22C5FE; color: #212529;" placeholder="Nombre" type="text" name="nombre" id="nombre">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="col-form-label col-md-4" for="categoria_id">
+                                <div class="dropdown_text" style="color: black;">Categoría</div>
+                            </label>
+                            <div class="form-group col-md-8">
+                                <select class="form-control form-control-sm" name="categoria_id" required id="categoria_id" style="border-color: #22C5FE; color: #212529;" >
+                                    <option value="" disabled selected>
+                                        <div class="dropdown_text" style="color: black;">Seleccione la categoría...</div>
+                                    </option>
+                                    {{#each categorias }}
+                                        <option value="{{ id }}" {{#Condicion product.categoria_id '==' id }} selected {{/Condicion }} >
+                                            <div class="dropdown_text" style="color: black;">{{ nombre }}</div>
+                                        </option>
+                                    {{/each  }}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="col-form-label col-md-4" for="Costo">
+                                <div class="dropdown_text" style="color: black;">Costo</div>
+                            </label>
+                            <div class="form-group col-md-8">
+                                <input class="form-control form-control-sm" maxlength="10" required value="{{ product.costo }}"
+                                    style="border-color: #22C5FE; color: #212529;" placeholder="Costo" type="number" name="Costo" id="Costo" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="image-upload">
+                            <label for="file-input">
+                                <span>
+                                <i class="far fa-edit fa-2x" style="color: #22C5FE;"> </i> Seleccione una imagen
+                                </span>
+                            </label>
+                            <input id="file-input" type='file' id="imagenInput" accept="image/png, .jpeg, .jpg" name="imagen" value="{{ product.imagen }}" onchange="readURL(this);" />
+                        </div>
+                        <img id="imagen" width="135" height="135" {{#Condicion product.imagen '!=' 'undefined' }} src="/images/{{ product.imagen }}" {{/Condicion }} class="rounded mx-auto d-block">
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-center" >
+                    <div class="button button_continue">
+                        <button type="submit" style="background-color: transparent; border-width: 0px"><span>Guardar <i class="far fa-save"></i></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagen')
+                    .attr('src', e.target.result)
+                    .width(135)
+                    .height(135);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>

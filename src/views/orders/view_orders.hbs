@@ -1,0 +1,149 @@
+<!-- Home -->
+
+<div class="home">
+	<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/fondo.jpg" data-speed="0.8"></div>
+	<div class="home_container">
+		<div class="home_content">
+			<div class="home_title" style="font-size: 30px;"><b>PEDIDOS</b> </div>
+			<div class="breadcrumbs">
+				<ul class="d-flex flex-row align-items-center justify-content-start" >
+					<li><a style="color: black;" href="/home">INICIO</a></li>
+					<li style="color: black;">PEDIDOS</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Checkout -->
+<div class="cart_section">
+	<div class="section_container">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="realice-tab" data-toggle="tab" href="#realice" role="tab" aria-controls="realice" aria-selected="true" style="
+				font-family: 'Poppins', sans-serif;
+				text-transform: uppercase;
+				">Realicé</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="merealizaron-tab" data-toggle="tab" href="#merealizaron" role="tab" aria-controls="merealizaron" aria-selected="true" style="
+				font-family: 'Poppins', sans-serif;
+				text-transform: uppercase;
+				">Me realizaron</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="realice" role="tabpanel" aria-labelledby="realice-tab" style="margin-top: 20px;">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<table id="order" class="display" style="width:100%"> 
+								<thead> 
+									<tr> 
+										<th style="width: 60px; text-align: start;">Referencia</th>
+										<th style="width: 80px; text-align: center;">Fecha pedido</th>
+										<th style="width: 80px; text-align: center;">Fecha entrega</th>
+										<th style="width: 80px; text-align: start;">Dirección entrega</th>
+										<th style="width: 80px; text-align: end;">Total</th>
+										<th style="width: 80px; text-align: center;">Estado</th>
+										<th style="width: 60px; text-align: center;">Acciones</th>
+									</tr> 
+								</thead>
+								<tbody>
+									{{#each pedidosRealizados }}
+									<tr> 
+										<td> {{ referencia }} </td> 
+										<td style="text-align: center;"> {{ fecha_pedido }} </td> 
+										<td style="text-align: center;"> {{ fecha_entrega }} </td> 
+										<td style="text-align: start;"> {{ direccion_entrega }} </td> 
+										<td style="text-align: end;"> $ {{ total }} </td> 
+										<td style="text-align: center;"> <center> {{#EstadoPedido estado_id estado }} {{/EstadoPedido }}</center> </td> 
+										<td>
+											<div class="dropdown d-flex flex-row-reverse">
+												<button class="btn dropdown-toggle button button_continue m-0" style="height: auto; border-radius: 0px; font-size:14px"
+													type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Acciones
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius: 0px; padding: 0px;">
+													<a class="dropdown-item ml-auto" style="font-size: 14px;" href="/orders/show/{{ id }}"> 
+														<span> <i class="fa fa-eye"></i> Ver </span>
+													</a>
+													{{#Condicion estado_id '==' '6'  }} 
+													<a class="dropdown-item ml-auto" style="font-size: 14px;" href="/orders/cancel/{{ id }}"> 
+														<span> <i class="fas fa-ban"></i> Anular </span>
+													</a>
+													{{/Condicion }}
+												</div>
+											</div>
+										</td>
+									</tr> 
+									{{/each }}
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="tab-pane fade" id="merealizaron" role="tabpanel" aria-labelledby="merealizaron-tab" style="margin-top: 20px;">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<table id="orderMy" class="display" style="width:100%"> 
+								<thead> 
+									<tr> 
+										<th style="width: 60px; text-align: start;">Referencia</th>
+										<th style="width: 60px; text-align: center;">Fecha pedido</th>
+										<th style="width: 80px; text-align: start;">Código</th>
+										<th style="width: 80px; text-align: start;">Producto</th>
+										<th style="width: 80px; text-align: end;">Cantidad</th>
+										<th style="width: 100px; text-align: end;">Total</th>
+										<th style="width: 100px; text-align: center;">Estado</th>
+										<th style="width: 100px; text-align: center;">Fecha entrega</th>
+										<th style="width: 80px; text-align: center; ">Acciones</th>
+									</tr> 
+								</thead>
+								<tbody>
+									{{#each misPedidos }}
+									<tr> 
+										<td> {{ referencia }} </td> 
+										<td> {{ fecha_pedido }} </td> 
+										<td> {{ codigo }} </td>
+										<td> {{ nombre }} </td>
+										<td style="text-align: end;"> {{ cantidad }} </td> 
+										<td style="text-align: end;"> $ {{ total }} </td> 
+										<td style="text-align: center;"> <center> {{#EstadoPedido estado_id estado }} {{/EstadoPedido }}</center> </td> 
+										<td style="text-align: center;"> {{ fecha_entrega }} </td> 
+										<td>
+											<div class="dropdown d-flex flex-row-reverse">
+												<button class="btn dropdown-toggle button button_continue m-0"
+													style="height: auto; border-radius: 0px; font-size:14px" type="button" id="dropdownMenuButton"
+													data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Acciones
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="border-radius: 0px; padding: 0px;">
+													{{#Condicion estado_id '==' '6'  }}
+													<a class="dropdown-item ml-auto" style="font-size: 14px;" href="/orders/anul/{{ pedido_id }}">
+														<span> <i class="fas fa-ban"></i> Rechazar </span>
+													</a>
+													{{/Condicion }}
+												</div>
+											</div>
+										</td> 
+									</tr> 
+									{{/each }}
+								</tbody>
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
